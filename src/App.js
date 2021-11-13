@@ -3,33 +3,58 @@ import SignUp from "./Page/Sign-up";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "antd/dist/antd.css";
 
+
+let signInData = async (data) => {
+  let responce = await fetch("http://localhost:3030/signin/users", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  });
+  return await responce.json();
+};
+
+signInData()
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+
+let signUpData = async (data) => {
+  let responce = await fetch("http://localhost:3030/signup/users", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  });
+  return await responce.json();
+};
+
+signUpData()
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => {
+    console.log(err,'hi');
+  });
+
 function App() {
-
-  // const [user, setUser] = useState()
-
-  // const getUser = () => {
-
-  // };
-
-  const dataAccount = (data) => {
-    // setUser((prevData) => {
-    //   console.log(prevData, data);
-    //   return [data, ...prevData];
-    console.log(data)
-    // });
-  };
-
- 
+  useEffect(() => {}, []);
 
   return (
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path="/" exact>
-            <SignIn dataAcount={dataAccount} />
+          <Route path="/signin">
+            <SignIn signInData={signInData} />
           </Route>
           <Route path="/signup">
-            <SignUp />
+            <SignUp signUpData={signUpData} />
           </Route>
         </Switch>
       </div>

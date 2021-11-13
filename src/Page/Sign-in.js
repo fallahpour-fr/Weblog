@@ -12,7 +12,7 @@ const SignIn = (props) => {
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
     form.resetFields();
-    props.dataAcount(values);
+    props.signInData(values);
   };
 
   return (

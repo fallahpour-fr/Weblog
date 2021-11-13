@@ -1,12 +1,6 @@
 import React from "react";
-import Card from '../component/Card'
-import {
-  Form,
-  Input,
-  Select,
-  Checkbox,
-  Button,
-} from "antd";
+import Card from "../component/Card";
+import { Form, Input, Select, Checkbox, Button } from "antd";
 
 const { Option } = Select;
 
@@ -41,11 +35,13 @@ const tailFormItemLayout = {
   },
 };
 
-const RegistrationForm = () => {
+const RegistrationForm = (props) => {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
+    // console.log("Received values of form: ", values);
+    
+    props.signUpData(values)
   };
 
   const prefixSelector = (
@@ -63,8 +59,8 @@ const RegistrationForm = () => {
   );
 
   return (
-    <Card className='Card' >
-    <h1>Blog</h1>
+    <Card className="Card">
+      <h1>Blog</h1>
       <Form
         {...formItemLayout}
         form={form}
@@ -77,16 +73,27 @@ const RegistrationForm = () => {
         scrollToFirstError
       >
         <Form.Item
-          name="email"
-          label="E-mail"
+          name="Full name"
+          label="Full name"
           rules={[
             {
-              type: "email",
-              message: "The input is not valid E-mail!",
+              required: true,
+              message: "Please input your Full name!",
+              whitespace: true,
             },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          name="username"
+          label="Username"
+          rules={[
             {
               required: true,
-              message: "Please input your E-mail!",
+              message: "Please input your Username!",
+              whitespace: true,
             },
           ]}
         >
@@ -134,13 +141,16 @@ const RegistrationForm = () => {
         </Form.Item>
 
         <Form.Item
-          name="Full name"
-          label="Full name"
+          name="email"
+          label="E-mail"
           rules={[
             {
+              type: "email",
+              message: "The input is not valid E-mail!",
+            },
+            {
               required: true,
-              message: "Please input your Full name!",
-              whitespace: true,
+              message: "Please input your E-mail!",
             },
           ]}
         >
@@ -154,6 +164,14 @@ const RegistrationForm = () => {
             {
               required: true,
               message: "Please input your phone number!",
+            },
+            {
+              pattern: /^(?:\d*)$/,
+              message: "Value should contain just number",
+            },
+            {
+              pattern: /^[\d]{10}$/,
+              message: "Value should be less than 10 character",
             },
           ]}
         >

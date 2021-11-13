@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+
+:root{
+    --backgroundColor: rgb(147, 111, 180);
+    --linkColor:white;
+    --purple:purple;;
+}
+
+
+.Card{
+    width: 100%;
+    padding: 1em;
+    border-radius: 1em;
+    margin: 15px;
+}
+
+h1{
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    color: var(--purple);
+    font-size: 3em;
+}
+
+.formItem{
+    width: 100%;
+    padding: 1em;
+    border-bottom: 1px solid var(--purple);
+}
+
+.formItemInput{
+    width: 100%;
+    padding: 0.5em ;
+    border-radius: 1em;
+    border: none;
+    margin-top: 10px;
+    outline: none;
+}
+
+.submit{
+    width: 100%;
+}
+
+.submitButton{
+    margin: 10px;
+    background-color: var(--linkColor);
+    outline: none;
+    border: none;
+    padding: 0.5em 1em;
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+.submitButton:hover{
+    background-color:var(--purple);
+    color: var(--linkColor);
+}
+
+.link{
+    padding: 1em;    
+}
+
+.link a{
+    text-decoration: none;
+    color:var(--linkColor);
+    transition-duration: 50ms;
+}
+
+.link a:hover{
+    color: var(--purple);
+}

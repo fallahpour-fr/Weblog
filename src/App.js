@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import SignIn from "./Page/Sign-in";
+import SignUp from "./Page/Sign-up";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import "antd/dist/antd.css";
 
 function App() {
+
+  // const [user, setUser] = useState()
+
+  // const getUser = () => {
+
+  // };
+
+  const dataAccount = (data) => {
+    // setUser((prevData) => {
+    //   console.log(prevData, data);
+    //   return [data, ...prevData];
+    console.log(data)
+    // });
+  };
+
+ 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route path="/" exact>
+            <SignIn dataAcount={dataAccount} />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 

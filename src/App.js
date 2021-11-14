@@ -1,8 +1,10 @@
+import React,{useState} from 'react';
 import SignIn from "./Page/Sign-in";
 import SignUp from "./Page/Sign-up";
+import Home from './Page/Home';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "antd/dist/antd.css";
-
+import ErrorModal from "./component/ErrorModal";
 
 let signInData = async (data) => {
   let responce = await fetch("http://localhost:3030/signin/users", {
@@ -14,15 +16,6 @@ let signInData = async (data) => {
   });
   return await responce.json();
 };
-
-signInData()
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
 
 let signUpData = async (data) => {
   let responce = await fetch("http://localhost:3030/signup/users", {
@@ -40,15 +33,34 @@ signUpData()
     console.log(data);
   })
   .catch((err) => {
-    console.log(err,'hi');
+    console.log(err, "hi");
   });
 
 function App() {
-  useEffect(() => {}, []);
+  const [error, setError] = useState();
+  const [homePage, setHomePage] = useState(false);
+
+  signInData()
+    .then((data) => {
+      console.log(data);
+      setHomePage(true);
+    })
+    .catch((err) => {
+      console.log(err);
+      setError({
+        title:err.status,
+        massage:err.status
+      })
+    });
+
+    const errorHandler = () => {
+      setError(null);
+    };
 
   return (
     <BrowserRouter>
       <div className="App">
+      { error && <ErrorModal title={error.title} massage={error.massage} onConfrim={errorHandler} /> }
         <Switch>
           <Route path="/signin">
             <SignIn signInData={signInData} />
@@ -56,6 +68,11 @@ function App() {
           <Route path="/signup">
             <SignUp signUpData={signUpData} />
           </Route>
+          {homePage && (
+            <Route path="/homepage">
+              <Home />
+            </Route>
+          )}
         </Switch>
       </div>
     </BrowserRouter>

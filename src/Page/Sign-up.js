@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../component/Card";
 import { Form, Input, Select, Checkbox, Button } from "antd";
 
@@ -37,12 +37,29 @@ const tailFormItemLayout = {
 
 const RegistrationForm = (props) => {
   const [form] = Form.useForm();
-
+  const [signUpData, setSignUpData] = useState();
   const onFinish = (values) => {
     // console.log("Received values of form: ", values);
-    
-    props.signUpData(values)
+
+    fetch("http://localhost:3030/signup/users", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((Response) => Response.json())
+      .then((data) => {
+        console.log(data);
+        setSignUpData(data)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+  useEffect(() => {
+    props.signUpDataHandler(signUpData);
+  }, [signUpData]);
 
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>

@@ -1,3 +1,4 @@
+import React, { useState , useEffect} from "react";
 import { Link } from "react-router-dom";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
@@ -6,14 +7,32 @@ import "./Sign-in.css";
 
 const SignIn = (props) => {
   const [form] = Form.useForm();
+  const [signInData, setSignInData] = useState();
   const submitHandler = (e) => {
     e.preventDefault();
   };
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
     form.resetFields();
-    props.signInData(values);
+    // props.signInData(values);
+
+    fetch("http://localhost:3030/signin/users", {
+      method: "POST",
+      body: JSON.stringify(values),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((data) => data.json())
+      .then((data) => {
+        console.log(data);
+        setSignInData(data.data);
+      });
   };
+
+  useEffect(() => {
+    props.signInDataHandler(signInData);
+  }, [signInData]);
 
   return (
     <Card className="Card">
@@ -77,7 +96,7 @@ const SignIn = (props) => {
           </Button>
           <div className="orLine">OR</div>
           <div>
-            <Link to='/signup'>Regester now!</Link>
+            <Link to="/signup">Regester now!</Link>
           </div>
         </Form.Item>
       </Form>

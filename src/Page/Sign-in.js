@@ -8,6 +8,7 @@ import "./Sign-in.css";
 const SignIn = (props) => {
   const [form] = Form.useForm();
   const [signInData, setSignInData] = useState();
+  const [errorModule, setErrorModule] = useState();
   const submitHandler = (e) => {
     e.preventDefault();
   };
@@ -23,16 +24,26 @@ const SignIn = (props) => {
         "Content-type": "application/json; charset=UTF-8",
       },
     })
-      .then((data) => data.json())
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error('you did not regestered before , please go to sign up page .');
+        }
+        return response.json();
+      })
       .then((data) => {
-        console.log(data);
         setSignInData(data.data);
+      })
+      .catch((err) => {
+        setErrorModule({
+          title:'Error',
+          message:err.message
+        });
       });
   };
 
   useEffect(() => {
-    props.signInDataHandler(signInData);
-  }, [signInData]);
+    props.signInDataHandler(signInData, errorModule);
+  }, [signInData, errorModule]);
 
   return (
     <Card className="Card">

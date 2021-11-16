@@ -48,13 +48,20 @@ const RegistrationForm = (props) => {
         "Content-type": "application/json; charset=UTF-8",
       },
     })
-      .then((Response) => Response.json())
+      .then(function (response) {
+        if (!response.ok) {
+          throw Error('You regestered before , please go to log in page .');
+        }
+        return response.json();
+      })
       .then((data) => {
-        console.log(data);
-        setSignUpData(data);
+        setSignUpData(data.data);
       })
       .catch((err) => {
-        console.log(err);
+        setSignUpData({
+          title:'Error',
+          message:err.message
+        });
       });
   };
   useEffect(() => {

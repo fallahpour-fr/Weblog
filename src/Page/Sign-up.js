@@ -51,7 +51,7 @@ const RegistrationForm = (props) => {
       .then((Response) => Response.json())
       .then((data) => {
         console.log(data);
-        setSignUpData(data)
+        setSignUpData(data);
       })
       .catch((err) => {
         console.log(err);

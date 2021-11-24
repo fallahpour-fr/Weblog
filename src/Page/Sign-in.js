@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { Link, useHistory} from "react-router-dom";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useAuth } from "../component/context/auth";
@@ -8,7 +8,6 @@ import "./Sign-in.css";
 
 const SignIn = (props) => {
   const [form] = Form.useForm();
-  const [signInData, setSignInData] = useState();
   const [errorModule, setErrorModule] = useState();
   const { setAuthTokens } = useAuth();
   let history = useHistory();
@@ -37,7 +36,6 @@ const SignIn = (props) => {
         return response.json();
       })
       .then((data) => {
-        setSignInData(true);
         setAuthTokens(data.token ,data.data);
         history.push("/home");
       })

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Card from "../component/Card";
 import { Form, Input, Select, Checkbox, Button } from "antd";
-import { useHistory,Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useAuth } from "../component/context/auth";
 
 const { Option } = Select;
 
@@ -38,17 +39,11 @@ const tailFormItemLayout = {
 
 const RegistrationForm = (props) => {
   const [form] = Form.useForm();
-  const [signUpData, setSignUpData] = useState();
   const [errorModule, setErrorModule] = useState();
+  const { setAuthTokens } = useAuth();
+  let history = useHistory();
 
-  
-  // onClick={() => {
-  //   history.push("/home");
-  //   console.log('hi',history)
-  // }}
   const onFinish = (values) => {
-    // console.log("Received values of form: ", values);
-
     fetch("http://localhost:3030/signup/users", {
       method: "POST",
       body: JSON.stringify(values),
@@ -63,7 +58,8 @@ const RegistrationForm = (props) => {
         return response.json();
       })
       .then((data) => {
-        setSignUpData(true);
+        setAuthTokens(data.token, data.data);
+        history.push("/home");
       })
       .catch((err) => {
         setErrorModule({
@@ -72,19 +68,10 @@ const RegistrationForm = (props) => {
         });
       });
   };
-  // useEffect(() => {
-  //   props.signUpDataHandler(signUpData, errorModule);
-  // }, [signUpData, errorModule]);
 
-  // const click=()=>{
-  //   history.push("/home");
-  // }
-
-  // const errorHandler = () => {
-  //   setErrorModal(null);
-  // };
-
-
+  useEffect(() => {
+    props.ErrorHandler(errorModule);
+  }, [errorModule]);
 
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>

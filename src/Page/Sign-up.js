@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Card from "../component/Card";
 import { Form, Input, Select, Checkbox, Button } from "antd";
+import { useHistory,Redirect } from "react-router-dom";
 
 const { Option } = Select;
 
@@ -38,6 +39,13 @@ const tailFormItemLayout = {
 const RegistrationForm = (props) => {
   const [form] = Form.useForm();
   const [signUpData, setSignUpData] = useState();
+  const [errorModule, setErrorModule] = useState();
+
+  
+  // onClick={() => {
+  //   history.push("/home");
+  //   console.log('hi',history)
+  // }}
   const onFinish = (values) => {
     // console.log("Received values of form: ", values);
 
@@ -50,23 +58,33 @@ const RegistrationForm = (props) => {
     })
       .then(function (response) {
         if (!response.ok) {
-          throw Error('You regestered before , please go to log in page .');
+          throw Error("You regestered before , please go to log in page .");
         }
         return response.json();
       })
       .then((data) => {
-        setSignUpData(data.data);
+        setSignUpData(true);
       })
       .catch((err) => {
-        setSignUpData({
-          title:'Error',
-          message:err.message
+        setErrorModule({
+          title: "Error",
+          message: err.message,
         });
       });
   };
-  useEffect(() => {
-    props.signUpDataHandler(signUpData);
-  }, [signUpData]);
+  // useEffect(() => {
+  //   props.signUpDataHandler(signUpData, errorModule);
+  // }, [signUpData, errorModule]);
+
+  // const click=()=>{
+  //   history.push("/home");
+  // }
+
+  // const errorHandler = () => {
+  //   setErrorModal(null);
+  // };
+
+
 
   const prefixSelector = (
     <Form.Item name="prefix" noStyle>

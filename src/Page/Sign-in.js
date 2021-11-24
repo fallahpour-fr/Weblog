@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import { useAuth } from "../component/context/auth";
 import Card from "../component/Card";
 import "./Sign-in.css";
 
@@ -9,6 +10,9 @@ const SignIn = (props) => {
   const [form] = Form.useForm();
   const [signInData, setSignInData] = useState();
   const [errorModule, setErrorModule] = useState();
+  const { setAuthTokens } = useAuth();
+  let history = useHistory();
+  // const referer = props.location.state.referer || '/';
   const submitHandler = (e) => {
     e.preventDefault();
   };
@@ -26,24 +30,28 @@ const SignIn = (props) => {
     })
       .then(function (response) {
         if (!response.ok) {
-          throw new Error('you did not regestered before , please go to sign up page .');
+          throw new Error(
+            "you did not regestere before , please go to sign up page ."
+          );
         }
         return response.json();
       })
       .then((data) => {
-        setSignInData(data.data);
+        setSignInData(true);
+        setAuthTokens(data.token ,data.data);
+        history.push("/home");
       })
       .catch((err) => {
         setErrorModule({
-          title:'Error',
-          message:err.message
+          title: "Error",
+          message: err.message,
         });
       });
   };
 
   useEffect(() => {
-    props.signInDataHandler(signInData, errorModule);
-  }, [signInData, errorModule]);
+    props.ErrorHandler(errorModule);
+  }, [errorModule]);
 
   return (
     <Card className="Card">

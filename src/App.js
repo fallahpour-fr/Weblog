@@ -4,30 +4,25 @@ import SignUp from "./Page/Sign-up";
 import Home from "./Page/Home";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "antd/dist/antd.css";
+import { AuthContext } from "./component/context/auth";
+import PrivateRoute from "./component/PrivateRoute";
 import ErrorModal from "./component/ErrorModal";
 
 function App() {
-  const [homePage, setHomePage] = useState();
   const [errorModule, setErrorModal] = useState();
 
-  const signInDataHandler = (data, dataTwo) => {
-    if (typeof data !== "undefined") {
-      setHomePage(data);
-    } else if (typeof data === "undefined") {
-      setErrorModal(dataTwo);
-    }
-    
+  const ErrorHandler = (err) => {
+    setErrorModal(err);
   };
 
-  const signUpDataHandler = (data, dataTwo) => {
-    if (typeof data !== "undefined") {
-      setHomePage(data);
-    } else if (typeof data === "undefined") {
-      setErrorModal(dataTwo);
-    }
+  const [authTokens, setAuthTokens] = useState();
+
+  const setTokens = (token,data) => {
+    localStorage.setItem("tokens", JSON.stringify(token));
+    console.log(token,data);
+    setAuthTokens(token , data);
   };
 
- 
   const errorHandler = () => {
     setErrorModal(null);
   };
@@ -35,30 +30,25 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-      {errorModule && <ErrorModal title={errorModule.title} message={errorModule.message} onConfirm={errorHandler} />}
+        {errorModule && (
+          <ErrorModal
+            title={errorModule.title}
+            message={errorModule.message}
+            onConfirm={errorHandler}
+          />
+        )}
         <Switch>
-          <Route
-            path="/"
-            exact
-            render={() =>
-              homePage ? (
-                <Home to="/home" dataUsers={homePage} />
-              ) : (
-                <SignIn signInDataHandler={signInDataHandler} />
-              )
-            }
-          />
-          <Route
-            path="/signup"
-            exact
-            render={() =>
-              homePage ? (
-                <Home to="/home" dataUsers={homePage} />
-              ) : (
-                <SignUp signUpDataHandler={signUpDataHandler} />
-              )
-            }
-          />
+          <AuthContext.Provider
+            value={{ authTokens, setAuthTokens: setTokens }}
+          >
+            <Route exact path="/">
+              <SignIn ErrorHandler={ErrorHandler} />
+            </Route>
+            <Route path="/signup">
+              <SignUp ErrorHandler={ErrorHandler} />
+            </Route>
+            <PrivateRoute path="/home" comp={Home}></PrivateRoute>
+          </AuthContext.Provider>
         </Switch>
       </div>
     </BrowserRouter>

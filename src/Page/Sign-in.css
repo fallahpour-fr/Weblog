@@ -3,10 +3,18 @@
 
 
 .Card{
-    width: 100%;
+   width:300px;
     padding: 1em;
     border-radius: 1em;
     margin: 15px;
+}
+
+
+.parent{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 h1{

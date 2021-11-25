@@ -17,10 +17,10 @@ function App() {
 
   const [authTokens, setAuthTokens] = useState();
 
-  const setTokens = (token,data) => {
+  const setTokens = (token, data) => {
     localStorage.setItem("tokens", JSON.stringify(token));
-    console.log(token,data);
-    setAuthTokens(token , data);
+    console.log(token, data);
+    setAuthTokens(token, data);
   };
 
   const errorHandler = () => {

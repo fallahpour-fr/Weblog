@@ -4,6 +4,7 @@ import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useAuth } from "../component/context/auth";
 import Card from "../component/Card";
+import axios from "axios";
 import "./Sign-in.css";
 
 const SignIn = (props) => {
@@ -11,39 +12,38 @@ const SignIn = (props) => {
   const [errorModule, setErrorModule] = useState();
   const { setAuthTokens } = useAuth();
   let history = useHistory();
-  // const referer = props.location.state.referer || '/';
   const submitHandler = (e) => {
     e.preventDefault();
   };
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
     form.resetFields();
-    // props.signInData(values);
 
-    fetch("http://localhost:3030/signin/users", {
-      method: "POST",
-      body: JSON.stringify(values),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      },
-    })
-      .then(function (response) {
-        if (!response.ok) {
+    axios
+      .post("http://localhost:3030/signin/users", {
+        values,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          setAuthTokens(response.data.token, response.data.data);
+          history.push("/home");
+        } else {
           throw new Error(
             "you did not regestere before , please go to sign up page ."
           );
         }
-        return response.json();
-      })
-      .then((data) => {
-        setAuthTokens(data.token, data.data);
-        history.push("/home");
+        //   if (!response.data.ok) {
+        // throw new Error(
+        //   "you did not regestere before , please go to sign up page ."
+        // );
+        // }
       })
       .catch((err) => {
         setErrorModule({
           title: "Error",
           message: err.message,
         });
+        console.log(err.message);
       });
   };
 

@@ -1,30 +1,60 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { PageHeader, Button } from "antd";
 import "./Header.css";
-import { useHistory } from "react-router-dom";
+import {
+  useHistory,
+  Link,
+  Switch,
+  Route,
+  NavLink,
+  BrowserRouter,
+  useRouteMatch,
+} from "react-router-dom";
+import userImg from "./image/download.jpg";
+import Card from "./Card";
+import Createpost from "../Page/Createpost";
+import Profile from "../Page/Profile";
 
 const Header = () => {
-  let history = useHistory();
-  const logOut = () => {
-    localStorage.removeItem("tokens");
-    history.push("/");
-  };
+  // let history = useHistory();
+  // const directToProfile = () => {
+  //   history.push("/profile");
+  //   console.log("/profile");
+  // };
+
+  // const directToCreatePost = () => {
+  //   history.push("createpost");
+  //   console.log("create post");
+  // };
+
+  let { path, url } = useRouteMatch();
 
   return (
-    <div className="parente">
-      <PageHeader
-        className="site-page-header header"
-        onBack={() => window.history.back()}
-        title="Title"
-        subTitle="This is a subtitle"
-        extra={[
-          <Button key="1" type="primary" htmlType="button" onClick={logOut}>
-            logout
-          </Button>,
-        ]}
-      ></PageHeader>
-      <br />
-    </div>
+    <BrowserRouter>
+      <div className="parente">
+        <div className="navbar">
+          <div className="navbar-users-option">
+            <div className="navbar-account-options">
+              <button className="navbar-account">
+                <img src={userImg} alt="img" />
+              </button>
+              <Card className="navbar-users-itemes">
+                <ul>
+                  <li>
+                    <Link to={`${url}/profile`}>Profile</Link>
+                  </li>
+                  <li>
+                    <Link to={`${url}/createpost`}>Create post</Link>
+                  </li>
+                  <li>Nigth mode</li>
+                </ul>
+              </Card>
+            </div>
+            <div className="navbar-search"></div>
+          </div>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 };
 

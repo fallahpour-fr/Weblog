@@ -1,8 +1,45 @@
-.header {
+.navbar {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.navbar-account {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.navbar-account img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
 .parente {
   background: rgb(243, 240, 240);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
+
+.navbar-account-options:hover .navbar-users-itemes {
+  display: block;
+}
+
+.navbar-users-itemes {
+  position: absolute;
+  padding: 1em;
+  /* display: none; */
+}
+
+.navbar-users-itemes ul {
+  list-style-type: none;
+}
+
+.navbar-users-itemes li {
+  border-bottom: 1px solid black;
+  padding: 1em;
+  color: gray;
+}
+
+

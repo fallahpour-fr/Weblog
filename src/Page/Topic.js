@@ -1,10 +1,10 @@
 import React, { useParams } from "react";
 
 const Topic = () => {
-  let { Id } = useParams();
+  let params = useParams();
   return (
     <div>
-      <h1>{Id}</h1>
+      <h1>{params.Id}</h1>
     </div>
   );
 };

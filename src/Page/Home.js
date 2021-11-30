@@ -35,7 +35,7 @@ const Home = () => {
           <li>Nigth mode</li>
         </ul>
         <Switch>
-          <Route path={path}>
+          <Route exact path={path}>
             <h3>Home page</h3>
           </Route>
           <Route path={`${path}/:Id`}>

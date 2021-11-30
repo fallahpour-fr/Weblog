@@ -8,10 +8,10 @@ import {
   BrowserRouter,
   useRouteMatch,
 } from "react-router-dom";
-import Createpost from "../Page/Createpost";
-import Profile from "../Page/Profile";
 import Topic from "./Topic";
 import "./Home.css";
+import Createpost from "../Page/Createpost";
+import Profile from "../Page/Profile";
 
 const Home = () => {
   let history = useHistory();
@@ -30,16 +30,22 @@ const Home = () => {
             <Link to={`${url}/profile`}>Profile</Link>
           </li>
           <li>
+            <Link to={`${url}`}>All posts</Link>
+          </li>
+          <li>
             <Link to={`${url}/createpost`}>Create post</Link>
           </li>
           <li>Nigth mode</li>
         </ul>
         <Switch>
           <Route exact path={path}>
-            <h3>Home page</h3>
+            <h3>All posts</h3>
           </Route>
-          <Route path={`${path}/:Id`}>
-            <Topic />
+          <Route path={`${path}/profile`}>
+            <Profile />
+          </Route>
+          <Route path={`${path}/createpost`}>
+            <Createpost />
           </Route>
         </Switch>
       </div>

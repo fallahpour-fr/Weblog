@@ -1,4 +1,6 @@
+import React, { useState } from "react";
 import Header from "../component/Header";
+import Post from "../component/Post";
 import {
   useHistory,
   Link,
@@ -21,6 +23,14 @@ const Home = () => {
   };
 
   let { path, url } = useRouteMatch();
+  const [postForm, setPostForm] = useState([]);
+
+  const sendPostHandler = (value) => {
+    console.log(value);
+    setPostForm((preValue) => {
+      return [...preValue, value];
+    });
+  };
 
   return (
     <BrowserRouter>
@@ -37,21 +47,23 @@ const Home = () => {
           </li>
           <li>Nigth mode</li>
         </ul>
+        <button className="middle" onClick={logOut}>
+          log out
+        </button>
         <Switch>
           <Route exact path={path}>
-            <h3>All posts</h3>
+            <h1>All posts</h1>
+            <Post postForm={postForm} />
           </Route>
           <Route path={`${path}/profile`}>
             <Profile />
           </Route>
           <Route path={`${path}/createpost`}>
-            <Createpost />
+            <Createpost sendPostHandler={sendPostHandler} />
           </Route>
         </Switch>
+        
       </div>
-      <button className="middle" onClick={logOut}>
-        log out
-      </button>
     </BrowserRouter>
   );
 };

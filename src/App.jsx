@@ -10,32 +10,17 @@ import ErrorModal from "./component/ErrorModal";
 
 function App() {
   const [errorModule, setErrorModal] = useState();
-  const [loggedIn, setLoggedIn] = useState(false);
   const ErrorHandler = (err) => {
     setErrorModal(err);
   };
 
-  const signIn = () => {
-    setLoggedIn(true);
+  const [authTokens, setAuthTokens] = useState();
+
+  const setTokens = (token, data) => {
+    localStorage.setItem("tokens", JSON.stringify(token));
+    console.log(token, data);
+    setAuthTokens(token, data);
   };
-
-  const signup = (token) => {
-    setLoggedIn(true);
-    console.log(token)
-  };
-
-  const logout = () => {
-    setLoggedIn(false);
-  };b53ea10
-
-  // const [authTokens, setAuthTokens] = useState();
-
-  // const setTokens = (token, data) => {
-  //   localStorage.setItem("tokens", JSON.stringify(token));
-  //   console.log(token, data);
-  //   setAuthTokens(token, data);
-  // { authTokens, setAuthTokens: setTokens }
-  // };
 
   const errorHandler = () => {
     setErrorModal(null);
@@ -53,12 +38,7 @@ function App() {
         )}
         <Switch>
           <AuthContext.Provider
-            value={{
-              isLoggedIn: loggedIn,
-              signIn: signIn,
-              logout: logout,
-              signup: signup,
-            }}
+            value={{ authTokens, setAuthTokens: setTokens }}
           >
             <Route exact path="/">
               <SignIn ErrorHandler={ErrorHandler} />

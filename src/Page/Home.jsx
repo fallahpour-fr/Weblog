@@ -12,8 +12,8 @@ import {
 } from "react-router-dom";
 import Topic from "./Topic";
 import "./Home.css";
-import Createpost from "../Page/Createpost";
-import Profile from "../Page/Profile";
+import Createpost from "./Createpost";
+import Profile from "./Profile";
 
 const Home = () => {
   let history = useHistory();

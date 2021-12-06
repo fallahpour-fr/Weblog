@@ -59,7 +59,7 @@ const RegistrationForm = (props) => {
       })
       .then((data) => {
         setAuthTokens(data.token, data.data);
-        history.push("/home");
+        // history.push("/home");
       })
       .catch((err) => {
         setErrorModule({

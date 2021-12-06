@@ -40,7 +40,7 @@ const tailFormItemLayout = {
 const RegistrationForm = (props) => {
   const [form] = Form.useForm();
   const [errorModule, setErrorModule] = useState();
-  const { signup } = useAuth();
+  const { setAuthTokens } = useAuth();
   let history = useHistory();
   const onFinish = (values) => {
     fetch("http://localhost:3030/signup/users", {
@@ -58,13 +58,7 @@ const RegistrationForm = (props) => {
       })
       .then((data) => {
         // history.push("/home");
-<<<<<<< HEAD:src/Page/Sign-up.jsx
-        setAuthTokens(data.token , data.data)
-=======
-        // setSignUpData(data.token);
-        // signup(data.token, data.data);
-        signup(data.token)
->>>>>>> 89a017fcdf4bd62802428e6292cb544bdc147a64:src/Page/Sign-up.js
+        setAuthTokens(data.token, data.data);
       })
       .catch((err) => {
         setErrorModule({

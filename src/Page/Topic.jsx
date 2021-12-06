@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import Createpost from "../Page/Createpost";
-import Profile from "../Page/Profile";
+import Createpost from "./Createpost";
+import Profile from "./Profile";
 
 const Topic = () => {
   let { Id } = useParams();

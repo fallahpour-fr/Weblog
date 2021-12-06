@@ -26,7 +26,7 @@ const SignIn = (props) => {
       .then((response) => {
         if (response.status === 200) {
           setAuthTokens(response.data.token, response.data.data);
-          history.push("/home");
+          // history.push("/home");
         } else {
           throw new Error(
             "you did not regestere before , please go to sign up page ."

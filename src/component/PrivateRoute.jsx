@@ -5,11 +5,14 @@ import { useAuth } from "./context/auth";
 function PrivateRoute({ comp: Home, ...rest }) {
   const { authTokens } = useAuth();
   console.log(authTokens);
+  if(authTokens){
+    return <Redirect to="/" />
+  }
   return (
     <Route
       {...rest}
       render={(props) =>
-        authTokens ? <Home {...props} /> : <Redirect to="/" />
+         <Home {...props} /> 
       }
     />
   );

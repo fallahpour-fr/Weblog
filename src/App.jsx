@@ -12,13 +12,17 @@ function App() {
   const [errorModule, setErrorModal] = useState();
 
 
-  const [authTokens, setAuthTokens] = useState();
+  const [authTokens, setAuthTokens] = useState(localStorage.getItem('tokens'));
 
-  const setTokens = (token, data) => {
+  const setTokens = (token) => {
     localStorage.setItem("tokens", JSON.stringify(token));
-    console.log(token, data);
-    setAuthTokens(token, data);
+    console.log(token);
+    setAuthTokens(token);
   };
+
+  const ErrorHandler=(data)=>{
+    setErrorModal(data)
+  }
 
   const errorHandler = () => {
     setErrorModal(null);

@@ -25,6 +25,7 @@ const SignIn = (props) => {
       })
       .then((response) => {
         if (response.status === 200) {
+          console.log("token:", response.data.token);
           setAuthTokens(response.data.token);
           history.push("/home");
         } else {

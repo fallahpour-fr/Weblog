@@ -15,7 +15,7 @@ function App() {
   const [authTokens, setAuthTokens] = useState(localStorage.getItem('tokens'));
 
   const setTokens = (token) => {
-    localStorage.setItem("tokens", JSON.stringify(token));
+    localStorage.setItem("tokens", token);
     console.log(token);
     setAuthTokens(token);
   };

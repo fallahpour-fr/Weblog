@@ -5,7 +5,7 @@ import { useAuth } from "./context/auth";
 function PrivateRoute({ comp: Home, ...rest }) {
   const { authTokens } = useAuth();
   console.log(authTokens);
-  if(authTokens){
+  if(!authTokens){
     return <Redirect to="/" />
   }
   return (

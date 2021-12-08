@@ -2,6 +2,7 @@ import React from "react";
 import { Form, Input, InputNumber, Button } from "antd";
 import "./Createpost.css";
 import { useHistory } from "react-router-dom";
+import API from '../component/API/axios'
 
 const layout = {
   labelCol: { span: 8 },
@@ -17,9 +18,18 @@ const Createpost = (props) => {
   const history=useHistory()
   const onFinish = (values) => {
     form.resetFields();
-    console.log(values);
+    // console.log(values);
     props.sendPostHandler(values);
     history.push('/home')
+    API.post('/createpost',{
+      values
+    })
+    .then((response)=>{
+      console.log(response)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
   };
 
   return (

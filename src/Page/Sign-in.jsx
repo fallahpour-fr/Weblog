@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useAuth } from "../component/context/auth";
@@ -15,6 +15,12 @@ const SignIn = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
   };
+  let token = localStorage.getItem("tokens");
+
+  if (token) {
+    history.push("/home");
+  }
+
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
     form.resetFields();

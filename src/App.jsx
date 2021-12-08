@@ -10,8 +10,6 @@ import ErrorModal from "./component/ErrorModal";
 
 function App() {
   const [errorModule, setErrorModal] = useState();
-
-
   const [authTokens, setAuthTokens] = useState(localStorage.getItem('tokens'));
 
   const setTokens = (token) => {

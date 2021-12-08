@@ -5,17 +5,12 @@ import { useAuth } from "./context/auth";
 function PrivateRoute({ comp: Home, ...rest }) {
   const { authTokens } = useAuth();
   console.log(authTokens);
-  if(!authTokens){
-    return <Redirect to="/" />
+  let token = localStorage.getItem("tokens");
+  if (!authTokens) {
+    console.log("tokens in privet rout", token);
+    return <Redirect to="/" />;
   }
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-         <Home {...props} /> 
-      }
-    />
-  );
+  return <Route {...rest} render={(props) => <Home {...props} />} />;
 }
 
 export default PrivateRoute;

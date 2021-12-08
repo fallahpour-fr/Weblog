@@ -42,6 +42,11 @@ const RegistrationForm = (props) => {
   const [errorModule, setErrorModule] = useState();
   const { setAuthTokens } = useAuth();
   let history = useHistory();
+  let token = localStorage.getItem("tokens");
+  if (token) {
+    history.push("/home");
+  }
+
   const onFinish = (values) => {
     fetch("http://localhost:3030/signup/users", {
       method: "POST",

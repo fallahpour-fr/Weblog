@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect} from "react";
 import Header from "../component/Header";
 import Post from "../component/Post";
 import {
@@ -14,6 +14,8 @@ import Topic from "./Topic";
 import "./Home.css";
 import Createpost from "./Createpost";
 import Profile from "./Profile";
+import User from "../component/User";
+import API from "../component/API/axios";
 
 const Home = () => {
   let history = useHistory();
@@ -31,6 +33,18 @@ const Home = () => {
       return [...preValue, value];
     });
   };
+
+ useEffect(() => {
+   API.get('/users/profile')
+    .then((response)=>{
+      console.log(response.data.user.posts)
+      setPostForm(response.data.user.posts)
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+ }, [])
+   
 
   return (
     <BrowserRouter>
@@ -50,6 +64,7 @@ const Home = () => {
         <button className="middle" onClick={logOut}>
           log out
         </button>
+        <User />
         <Switch>
           <Route exact path={path}>
             <h1>All posts</h1>
@@ -62,7 +77,6 @@ const Home = () => {
             <Createpost sendPostHandler={sendPostHandler} />
           </Route>
         </Switch>
-        
       </div>
     </BrowserRouter>
   );

@@ -19,18 +19,12 @@ const Createpost = (props) => {
   const [enteredData, setEnteredData] = useState(false);
   const onFinish = (values) => {
     form.resetFields();
-    // console.log(values);
+    console.log(values);
     props.sendPostHandler(values);
     history.push("/home");
     API.post("/createpost", {
       values,
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    });
   };
 
   const formFocusHandler = () => {
@@ -38,9 +32,9 @@ const Createpost = (props) => {
     setEnteredData(true);
   };
 
-  const finishEnteringHandler=()=>{
-    setEnteredData(false)
-  }
+  const finishEnteringHandler = () => {
+    setEnteredData(false);
+  };
 
   return (
     <div className="createpost">
@@ -56,14 +50,19 @@ const Createpost = (props) => {
         form={form}
         onFocus={formFocusHandler}
       >
-        <Form.Item name={"title"} label="Title">
+        <Form.Item
+          name={"user", "Title"}
+          label="Title"
+          rules={[{ required: true }]}
+        >
           <Input />
         </Form.Item>
-        <Form.Item name={"text"} label="Text">
+        
+        <Form.Item name={"user", "Post"} label="Post" rules={[{ required: true }]}>
           <Input.TextArea />
         </Form.Item>
         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-          <Button type="primary" htmlType="submit" onClick={finishEnteringHandler} >
+          <Button type="primary" htmlType="submit" onClick={finishEnteringHandler}>
             Submit
           </Button>
         </Form.Item>

@@ -30,6 +30,7 @@ const Home = () => {
   const [postForm, setPostForm] = useState([]);
 
   const sendPostHandler = (value) => {
+    console.log(value)
     setPostForm((preValue) => {
       return [...preValue, value];
     });

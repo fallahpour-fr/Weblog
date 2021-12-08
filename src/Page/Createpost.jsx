@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input, InputNumber, Button } from "antd";
 import "./Createpost.css";
-import { useHistory } from "react-router-dom";
-import API from '../component/API/axios'
+import { useHistory, Prompt } from "react-router-dom";
+import API from "../component/API/axios";
 
 const layout = {
   labelCol: { span: 8 },
@@ -15,31 +15,46 @@ const validateMessages = {
 
 const Createpost = (props) => {
   const [form] = Form.useForm();
-  const history=useHistory()
+  const history = useHistory();
+  const [enteredData, setEnteredData] = useState(false);
   const onFinish = (values) => {
     form.resetFields();
     // console.log(values);
     props.sendPostHandler(values);
-    history.push('/home')
-    API.post('/createpost',{
-      values
+    history.push("/home");
+    API.post("/createpost", {
+      values,
     })
-    .then((response)=>{
-      console.log(response)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
+
+  const formFocusHandler = () => {
+    console.log("focuse !");
+    setEnteredData(true);
+  };
+
+  const finishEnteringHandler=()=>{
+    setEnteredData(false)
+  }
 
   return (
     <div className="createpost">
+      <Prompt
+        when={enteredData}
+        message="Are you sure you want to leave this page ?"
+      />
       <Form
         {...layout}
         name="nest-messages"
         onFinish={onFinish}
         validateMessages={validateMessages}
         form={form}
+        onFocus={formFocusHandler}
       >
         <Form.Item name={"title"} label="Title">
           <Input />
@@ -48,7 +63,7 @@ const Createpost = (props) => {
           <Input.TextArea />
         </Form.Item>
         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" onClick={finishEnteringHandler} >
             Submit
           </Button>
         </Form.Item>

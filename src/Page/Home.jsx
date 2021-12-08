@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Header from "../component/Header";
 import Post from "../component/Post";
 import {
@@ -16,8 +16,10 @@ import Createpost from "./Createpost";
 import Profile from "./Profile";
 import User from "../component/User";
 import API from "../component/API/axios";
+import ErrorModal from "../component/ErrorModal";
 
 const Home = () => {
+  const [errorModule, setErrorModal] = useState();
   let history = useHistory();
   const logOut = () => {
     localStorage.removeItem("tokens");
@@ -28,27 +30,38 @@ const Home = () => {
   const [postForm, setPostForm] = useState([]);
 
   const sendPostHandler = (value) => {
-    console.log(value);
     setPostForm((preValue) => {
       return [...preValue, value];
     });
   };
 
- useEffect(() => {
-   API.get('/users/profile')
-    .then((response)=>{
-      console.log(response.data.user.posts)
-      setPostForm(response.data.user.posts)
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
- }, [])
-   
+  const errorHandler = () => {
+    setErrorModal(null);
+  };
+
+  useEffect(() => {
+    API.get("/users/profile")
+      .then((response) => {
+        setPostForm(response.data.user.posts);
+      })
+      .catch((err) => {
+        console.log(err.response.error);
+        setErrorModal(err);
+        // if (err.response.error)
+        //   console.log(`Error : ${JSON.stringify(err.response.error)}`);
+      });
+  }, []);
 
   return (
     <BrowserRouter>
       <div>
+        {errorModule && (
+          <ErrorModal
+            title={errorModule.title}
+            message={errorModule.message}
+            onConfirm={errorHandler}
+          />
+        )}
         <ul>
           <li>
             <Link to={`${url}/profile`}>Profile</Link>

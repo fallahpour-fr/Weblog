@@ -42,13 +42,13 @@ function App() {
               authTokens, setAuthTokens: setTokens
             }}
           >
-            <Route exact path="/">
+            <Route  path="/signin">
               <SignIn ErrorHandler={ErrorHandler} />
             </Route>
             <Route path="/signup">
               <SignUp ErrorHandler={ErrorHandler} />
             </Route>
-            <PrivateRoute path="/home" comp={Home}></PrivateRoute>
+            <PrivateRoute path="/" exact comp={Home}></PrivateRoute>
           </AuthContext.Provider>
         </Switch>
       </div>

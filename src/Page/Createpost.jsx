@@ -19,9 +19,10 @@ const Createpost = (props) => {
   const [enteredData, setEnteredData] = useState(false);
   const onFinish = (values) => {
     form.resetFields();
+    values.id=Math.random()
     console.log(values);
     props.sendPostHandler(values);
-    history.push("/home");
+    history.push("/");
     API.post("/createpost", {
       values,
     });

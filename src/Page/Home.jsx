@@ -18,24 +18,13 @@ import User from "../component/User";
 import API from "../component/API/axios";
 import ErrorModal from "../component/ErrorModal";
 import OnePost from "../component/OnePost";
+import { useAuth } from "../component/context/auth";
 
 const Home = () => {
   const [errorModule, setErrorModal] = useState();
-  let history = useHistory();
-  const logOut = () => {
-    localStorage.removeItem("tokens");
-    history.push("/signin");
-  };
+  const { postForm, setPostForm } = useAuth();
 
-  // let { path, url } = useRouteMatch();
-  const [postForm, setPostForm] = useState([]);
-
-  const sendPostHandler = (value) => {
-    console.log(value);
-    setPostForm((preValue) => {
-      return [...preValue, value];
-    });
-  };
+  let { path, url } = useRouteMatch();
 
   const errorHandler = () => {
     setErrorModal(null);
@@ -49,8 +38,8 @@ const Home = () => {
       .catch((err) => {
         console.log(err.response.data);
         setErrorModal({
-          title: 'Error',
-          message : err.response.data
+          title: "Error",
+          message: err.response.data,
         });
         // if (err.response.error)
         //   console.log(`Error : ${JSON.stringify(err.response.error)}`);
@@ -72,48 +61,22 @@ const Home = () => {
   };
 
   return (
-    <BrowserRouter>
-      <div>
-        {errorModule && (
-          <ErrorModal
-            title={errorModule.title}
-            message={errorModule.message}
-            onConfirm={errorHandler}
-          />
-        )}
-        <ul>
-          <li>
-            <Link to='/profile'>Profile</Link>
-          </li>
-          <li>
-            <Link to='/'>Allposts</Link>
-          </li>
-          <li>
-            <Link to='/createpost'>Create post</Link>
-          </li>
-          <li>Nigth mode</li>
-        </ul>
-        <button className="middle" onClick={logOut}>
-          log out
-        </button>
-        <User />
-        <Switch>
-          <Route exact path='/'>
-            <h1>All posts</h1>
-            <Post removed={removed} postForm={postForm} />
-          </Route>
-          <Route path='/profile'>
-            <Profile />
-          </Route>
-          <Route path='/createpost'>
-            <Createpost sendPostHandler={sendPostHandler} />
-          </Route>
-          <Route path='/:id'>
-            <OnePost />
-          </Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <div>
+      <BrowserRouter>
+        <div>
+          {errorModule && (
+            <ErrorModal
+              title={errorModule.title}
+              message={errorModule.message}
+              onConfirm={errorHandler}
+            />
+          )}
+          <Header />
+          <h1>All posts</h1>
+          <Post removed={removed} postForm={postForm} />
+        </div>
+      </BrowserRouter>
+    </div>
   );
 };
 

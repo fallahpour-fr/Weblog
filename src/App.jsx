@@ -8,9 +8,15 @@ import { AuthContext } from "./component/context/auth";
 import PrivateRoute from "./component/PrivateRoute";
 import ErrorModal from "./component/ErrorModal";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Profile from "./Page/Profile";
 import Createpost from "./Page/Createpost";
 import OnePost from "./component/OnePost";
+=======
+import Profile from './Page/Profile'
+import Createpost from './Page/Createpost'
+import OnePost from './component/OnePost'
+>>>>>>> c7521a4f9d9f16d69ceedc6551341feb1c0fe575
 =======
 import Profile from './Page/Profile'
 import Createpost from './Page/Createpost'
@@ -59,7 +65,11 @@ function App() {
               setAuthTokens: setTokens,
               postForm,
 <<<<<<< HEAD
+<<<<<<< HEAD
               setPostForm: sendPostHandler,
+=======
+              setPostForm : sendPostHandler
+>>>>>>> c7521a4f9d9f16d69ceedc6551341feb1c0fe575
 =======
               setPostForm : sendPostHandler
 >>>>>>> c7521a4f9d9f16d69ceedc6551341feb1c0fe575
@@ -72,9 +82,12 @@ function App() {
               <SignUp ErrorHandler={ErrorHandler} />
             </Route>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <PrivateRoute path="/" exact comp={Home}/>
             <PrivateRoute path='/profile' comp={Profile} />
 =======
+=======
+>>>>>>> c7521a4f9d9f16d69ceedc6551341feb1c0fe575
             <PrivateRoute path="/" exact comp={Home}>
               <Route path="/profile">
                 <Profile />
@@ -86,6 +99,9 @@ function App() {
                 <OnePost />
               </Route>
             </PrivateRoute>
+<<<<<<< HEAD
+>>>>>>> c7521a4f9d9f16d69ceedc6551341feb1c0fe575
+=======
 >>>>>>> c7521a4f9d9f16d69ceedc6551341feb1c0fe575
           </AuthContext.Provider>
         </Switch>

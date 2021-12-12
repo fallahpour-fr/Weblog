@@ -7,9 +7,15 @@ import "antd/dist/antd.css";
 import { AuthContext } from "./component/context/auth";
 import PrivateRoute from "./component/PrivateRoute";
 import ErrorModal from "./component/ErrorModal";
+<<<<<<< HEAD
 import Profile from "./Page/Profile";
 import Createpost from "./Page/Createpost";
 import OnePost from "./component/OnePost";
+=======
+import Profile from './Page/Profile'
+import Createpost from './Page/Createpost'
+import OnePost from './component/OnePost'
+>>>>>>> c7521a4f9d9f16d69ceedc6551341feb1c0fe575
 
 function App() {
   const [errorModule, setErrorModal] = useState();
@@ -52,7 +58,11 @@ function App() {
               authTokens,
               setAuthTokens: setTokens,
               postForm,
+<<<<<<< HEAD
               setPostForm: sendPostHandler,
+=======
+              setPostForm : sendPostHandler
+>>>>>>> c7521a4f9d9f16d69ceedc6551341feb1c0fe575
             }}
           >
             <Route path="/signin">
@@ -61,8 +71,22 @@ function App() {
             <Route path="/signup">
               <SignUp ErrorHandler={ErrorHandler} />
             </Route>
+<<<<<<< HEAD
             <PrivateRoute path="/" exact comp={Home}/>
             <PrivateRoute path='/profile' comp={Profile} />
+=======
+            <PrivateRoute path="/" exact comp={Home}>
+              <Route path="/profile">
+                <Profile />
+              </Route>
+              <Route path="/createpost">
+                <Createpost  />
+              </Route>
+              <Route path="/:id">
+                <OnePost />
+              </Route>
+            </PrivateRoute>
+>>>>>>> c7521a4f9d9f16d69ceedc6551341feb1c0fe575
           </AuthContext.Provider>
         </Switch>
       </div>

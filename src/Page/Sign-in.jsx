@@ -18,7 +18,7 @@ const SignIn = (props) => {
   let token = localStorage.getItem("tokens");
 
   if (token) {
-    history.push("/home");
+    history.push("/");
   }
 
   const onFinish = (values) => {
@@ -33,7 +33,7 @@ const SignIn = (props) => {
         if (response.status === 200) {
           console.log("token:", response.data.token);
           setAuthTokens(response.data.token);
-          history.push("/home");
+          history.push("/");
         } else {
           throw new Error(
             "you did not regestere before , please go to sign up page ."

@@ -44,7 +44,7 @@ const RegistrationForm = (props) => {
   let history = useHistory();
   let token = localStorage.getItem("tokens");
   if (token) {
-    history.push("/home");
+    history.push("/");
   }
 
   const onFinish = (values) => {
@@ -62,7 +62,7 @@ const RegistrationForm = (props) => {
         return response.json();
       })
       .then((data) => {
-        history.push("/home");
+        history.push("/");
         console.log("token:", data.token);
         setAuthTokens(data.token);
       })

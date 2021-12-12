@@ -3,6 +3,7 @@ import { Form, Input, InputNumber, Button } from "antd";
 import "./Createpost.css";
 import { useHistory, Prompt } from "react-router-dom";
 import API from "../component/API/axios";
+import { useAuth } from "../component/context/auth";
 
 const layout = {
   labelCol: { span: 8 },
@@ -13,15 +14,17 @@ const validateMessages = {
   required: "${label} is required!",
 };
 
-const Createpost = (props) => {
+const Createpost = () => {
   const [form] = Form.useForm();
   const history = useHistory();
   const [enteredData, setEnteredData] = useState(false);
+  const {setPostForm}=useAuth()
   const onFinish = (values) => {
     form.resetFields();
+    values.id=Math.random()
     console.log(values);
-    props.sendPostHandler(values);
-    history.push("/home");
+    setPostForm (values);
+    history.push("/");
     API.post("/createpost", {
       values,
     });

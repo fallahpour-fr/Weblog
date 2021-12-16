@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Header from "../component/Header";
-import Post from "../component/Post";
 import {
   useHistory,
   Link,
@@ -10,13 +8,10 @@ import {
   BrowserRouter,
   useRouteMatch,
 } from "react-router-dom";
-import Topic from "./Topic";
 import "./Home.css";
-import Createpost from "./Createpost";
-import Profile from "./Profile";
-import User from "../component/User";
 import API from "../component/API/axios";
 import ErrorModal from "../component/ErrorModal";
+import Post from "../component/Post";
 import OnePost from "../component/OnePost";
 import { useAuth } from "../component/context/auth";
 
@@ -24,11 +19,11 @@ const Home = () => {
   const [errorModule, setErrorModal] = useState();
   const { postForm, setPostForm } = useAuth();
 
-  let { path, url } = useRouteMatch();
-
   const errorHandler = () => {
     setErrorModal(null);
   };
+
+  console.log(postForm);
 
   useEffect(() => {
     API.get("/users/profile")
@@ -60,6 +55,7 @@ const Home = () => {
       });
   };
 
+
   return (
     <div>
       <BrowserRouter>
@@ -71,9 +67,15 @@ const Home = () => {
               onConfirm={errorHandler}
             />
           )}
-          <Header />
-          <h1>All posts</h1>
-          <Post removed={removed} postForm={postForm} />
+          <Switch>
+            <Route path='/' exact >
+              <h1>Home</h1>
+              <Post removed={removed} postForm={postForm} />
+            </Route>
+            <Route path="/post/:id">
+              <OnePost />
+            </Route>
+          </Switch>
         </div>
       </BrowserRouter>
     </div>

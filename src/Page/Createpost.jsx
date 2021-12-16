@@ -18,12 +18,12 @@ const Createpost = () => {
   const [form] = Form.useForm();
   const history = useHistory();
   const [enteredData, setEnteredData] = useState(false);
-  const {setPostForm}=useAuth()
+  const {sendPostHandler}=useAuth()
   const onFinish = (values) => {
     form.resetFields();
     values.id=Math.random()
     console.log(values);
-    setPostForm (values);
+    sendPostHandler(values);
     history.push("/");
     API.post("/createpost", {
       values,

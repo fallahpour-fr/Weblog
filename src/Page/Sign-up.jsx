@@ -48,6 +48,10 @@ const RegistrationForm = (props) => {
   }
 
   const onFinish = (values) => {
+    let id = (values.id = Math.random());
+
+    localStorage.setItem("id", id);
+
     fetch("http://localhost:3030/signup/users", {
       method: "POST",
       body: JSON.stringify(values),
@@ -87,7 +91,7 @@ const RegistrationForm = (props) => {
       >
         <Option value="86">+98</Option>
         <Option value="87">+87</Option>
-        <Option value="87">+86</Option>
+        <Option value="86">+86</Option>
       </Select>
     </Form.Item>
   );
@@ -102,13 +106,12 @@ const RegistrationForm = (props) => {
           name="register"
           onFinish={onFinish}
           initialValues={{
-            residence: ["zhejiang", "hangzhou", "xihu"],
-            prefix: "86",
+            prefix: "98",
           }}
           scrollToFirstError
         >
           <Form.Item
-            name="Full name"
+            name="FullName"
             label="Full name"
             rules={[
               {
@@ -144,7 +147,6 @@ const RegistrationForm = (props) => {
                 message: "Please input your password!",
               },
             ]}
-            hasFeedback
           >
             <Input.Password />
           </Form.Item>
@@ -153,14 +155,13 @@ const RegistrationForm = (props) => {
             name="confirm"
             label="Confirm Password"
             dependencies={["password"]}
-            hasFeedback
             rules={[
               {
                 required: true,
                 message: "Please confirm your password!",
               },
               ({ getFieldValue }) => ({
-                validator(_, value) {
+                validator( value) {
                   if (!value || getFieldValue("password") === value) {
                     return Promise.resolve();
                   }
@@ -225,7 +226,7 @@ const RegistrationForm = (props) => {
             valuePropName="checked"
             rules={[
               {
-                validator: (_, value) =>
+                validator: (value) =>
                   value
                     ? Promise.resolve()
                     : Promise.reject(new Error("Should accept agreement")),

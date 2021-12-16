@@ -1,7 +1,7 @@
 import React from "react";
 import "./Header.css";
-import { Link ,useHistory ,useRouteMatch } from "react-router-dom";
-import User from './User'
+import { Link, useHistory, useRouteMatch } from "react-router-dom";
+import User from "./User";
 
 const Header = () => {
   let { path, url } = useRouteMatch();
@@ -14,13 +14,13 @@ const Header = () => {
     <div>
       <ul>
         <li>
-          <Link to="/profile" >Profile</Link>
+          <Link to="/profile">Profile</Link>
         </li>
         <li>
-          <Link to="/"  >Allposts</Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/createpost" >Create post</Link>
+          <Link to="/createpost">Write post</Link>
         </li>
         <li>Nigth mode</li>
       </ul>

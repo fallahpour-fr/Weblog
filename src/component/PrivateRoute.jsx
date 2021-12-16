@@ -1,16 +1,26 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import { useAuth } from "./context/auth";
+import Header from "../component/Header";
 
-function PrivateRoute({ comp: Home, ...rest }) {
+function PrivateRoute({ comp: Component, ...rest }) {
   const { authTokens } = useAuth();
   // console.log(authTokens);
   // let token = localStorage.getItem("tokens");
-  if (!authTokens) {
-    // console.log("tokens in privet rout", token);
-    return <Redirect to="/signin" />;
-  }
-  return <Route {...rest} render={(props) => <Home {...props} />} />;
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        authTokens ? (
+          <div>
+            <Header /> <Component {...props} />
+          </div>
+        ) : (
+          <Redirect to="/signin" />
+        )
+      }
+    />
+  );
 }
 
 export default PrivateRoute;

@@ -1,10 +1,12 @@
 .avatar-container {
-  width: 600px;
-  height: 600px;
+  width: 400px;
+  height: 400px;
   position: absolute;
-  top: 40%;
-  left: 40%;
+  top: 30%;
+  left: 60%;
   transform: translate(-50, -50);
+  /* background-color: blue; */
+  margin: 100px;
 }
 
 .avatar {
@@ -12,7 +14,7 @@
   height: 50%;
   border-radius: 50%;
   overflow: hidden;
-  background-color: rgb(238, 238, 238);
+  background-color: rgb(196, 196, 196);
 }
 
 .avatar-img {

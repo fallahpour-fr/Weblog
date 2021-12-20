@@ -61,7 +61,7 @@ export default function Avatar() {
     <>
       <div className="avatar-container">
         <div className="avatar">
-          <img className="avatar-img" alt="avatar" src="" />
+          <img className="avatar-img"  src="" />
         </div>
         <div>
           <Button

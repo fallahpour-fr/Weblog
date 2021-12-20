@@ -1,7 +1,9 @@
 .container {
-    height: 60vh;
+    height: 80%;
+    width: 100%;
     margin-top: 50px;
     background-color: rgba(170, 170, 170, 0.473);
+    position: absolute;
 }
 
 .container-cropper {
@@ -16,6 +18,8 @@
 
 .cropper {
     height: 90%;
+    width: 60%;
+    margin: auto;
     position: relative;
     padding: 10px;
 }

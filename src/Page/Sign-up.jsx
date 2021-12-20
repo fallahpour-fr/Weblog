@@ -89,7 +89,7 @@ const RegistrationForm = (props) => {
           width: 70,
         }}
       >
-        <Option value="86">+98</Option>
+        <Option value="98">+98</Option>
         <Option value="87">+87</Option>
         <Option value="86">+86</Option>
       </Select>
@@ -147,6 +147,7 @@ const RegistrationForm = (props) => {
                 message: "Please input your password!",
               },
             ]}
+            hasFeedback
           >
             <Input.Password />
           </Form.Item>
@@ -155,17 +156,17 @@ const RegistrationForm = (props) => {
             name="confirm"
             label="Confirm Password"
             dependencies={["password"]}
+            hasFeedback
             rules={[
               {
                 required: true,
                 message: "Please confirm your password!",
               },
               ({ getFieldValue }) => ({
-                validator( value) {
+                validator(_, value) {
                   if (!value || getFieldValue("password") === value) {
                     return Promise.resolve();
                   }
-
                   return Promise.reject(
                     new Error(
                       "The two passwords that you entered do not match!"

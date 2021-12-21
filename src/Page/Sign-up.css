@@ -1,26 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
 
-:root{
-    --backgroundColor: rgb(147, 111, 180);
-    --linkColor:white;
-    --purple:purple;
-}
-
-
-.Card{
-    padding: 1.5em;
-}
-
 h1{
     text-align: center;
     font-family: 'Dancing Script', cursive;
-    color: purple;
     font-size: 3em;
 }
 
-.parent{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}

@@ -1,7 +1,6 @@
 import React from "react";
 import "./Header.css";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
-import User from "./User";
 
 const Header = () => {
   let { path, url } = useRouteMatch();
@@ -11,23 +10,33 @@ const Header = () => {
     history.push("/signin");
   };
   return (
-    <div>
-      <ul>
-        <li>
-          <Link to="/profile">Profile</Link>
-        </li>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/createpost">Write post</Link>
-        </li>
-        <li>Nigth mode</li>
-      </ul>
-      <button className="middle" onClick={logOut}>
-        log out
-      </button>
-      <User />
+    <div className="header">
+      <div className='logo'>
+        <h2>Logo</h2>
+      </div>
+      <div className="header-links">
+        <ul>
+          <li>
+            <Link className="header-links__link" to="/profile">
+              Profile
+            </Link>
+          </li>
+          <li>
+            <Link className="header-links__link" to="/">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link className="header-links__link" to="/createpost">
+              Write post
+            </Link>
+          </li>
+          <li className="header-links__link">Nigth mode</li>
+        </ul>
+        <button onClick={logOut}>
+          log out
+        </button>
+      </div>
     </div>
   );
 };

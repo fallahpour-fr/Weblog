@@ -5,11 +5,15 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useAuth } from "../component/context/auth";
 import Card from "../component/Card";
 import axios from "axios";
+import GoogleLogin from "react-google-login";
 import "./Sign-in.css";
+
+const clientId = "Your-Client-Id";
 
 const SignIn = (props) => {
   const [form] = Form.useForm();
   const [errorModule, setErrorModule] = useState();
+  const [showLogInButton, setShowLogInButton] = useState(true);
   const { setAuthTokens } = useAuth();
   let history = useHistory();
   const submitHandler = (e) => {
@@ -20,6 +24,15 @@ const SignIn = (props) => {
   if (token) {
     history.push("/");
   }
+
+  const onLoginSuccess = (res) => {
+    console.log("Login Success:", res.profileObj);
+    setShowLogInButton(false);
+  };
+
+  const onLoginFailure = (res) => {
+    console.log("Login Failed:", res);
+  };
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
@@ -57,6 +70,8 @@ const SignIn = (props) => {
   useEffect(() => {
     props.ErrorHandler(errorModule);
   }, [errorModule]);
+
+ 
 
   return (
     <div className="parent">
@@ -125,6 +140,16 @@ const SignIn = (props) => {
             </div>
           </Form.Item>
         </Form>
+        {showLogInButton ? (
+          <GoogleLogin
+            clientId={clientId}
+            buttonText="Sign In"
+            onSuccess={onLoginSuccess}
+            onFailure={onLoginFailure}
+            cookiePolicy={"single_host_origin"}
+            isSignedIn={true}
+          />
+        ) : null}
       </Card>
     </div>
   );

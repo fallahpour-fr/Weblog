@@ -14,6 +14,7 @@ import ErrorModal from "../component/ErrorModal";
 import Post from "../component/Post";
 import OnePost from "../component/OnePost";
 import { useAuth } from "../component/context/auth";
+import User from '../component/User'
 
 const Home = () => {
   const [errorModule, setErrorModal] = useState();
@@ -67,6 +68,7 @@ const Home = () => {
               onConfirm={errorHandler}
             />
           )}
+          <User />
           <Switch>
             <Route path='/' exact >
               <h1>Home</h1>

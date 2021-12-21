@@ -1,45 +1,40 @@
-.navbar {
-  width: 100%;
+
+
+.header {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  background-color: aquamarine;
+  padding: 1em;
 }
 
-.navbar-account {
+.header-links {
+  display: flex;
+}
+
+.header-links ul {
+  display: flex;
+  list-style: none;
+}
+
+.header-links li {
+  margin: 10px;
+}
+
+.header-links__link{
+  color: aliceblue;
+}
+
+.header-links button{
   border: none;
-  outline: none;
-  cursor: pointer;
+  background:none;
+  color: aliceblue;
+  border: 1px solid aliceblue;
+  /* padding: 0 2em; */
+  border-radius: 10px;
+  height: 3em;
+  width:6.5em;
 }
 
-.navbar-account img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+.logo h2{
+  color: aliceblue;
 }
-
-.parente {
-  background: rgb(243, 240, 240);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-}
-
-.navbar-account-options:hover .navbar-users-itemes {
-  display: block;
-}
-
-.navbar-users-itemes {
-  position: absolute;
-  padding: 1em;
-  /* display: none; */
-}
-
-.navbar-users-itemes ul {
-  list-style-type: none;
-}
-
-.navbar-users-itemes li {
-  border-bottom: 1px solid black;
-  padding: 1em;
-  color: gray;
-}
-
-

@@ -1,6 +1,7 @@
 import React from "react";
-import "./Header.css";
+import "./Header.scss";
 import { Link, useHistory, useRouteMatch } from "react-router-dom";
+
 
 const Header = () => {
   let { path, url } = useRouteMatch();

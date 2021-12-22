@@ -5,7 +5,7 @@
   justify-content: space-between;
   background-color: $darkgreen;
   padding: 1em;
-  position: fixed;
+  width: 100%;
 }
 
 .header-links {
@@ -18,7 +18,7 @@
 
   li {
     margin: 10px;
-    @include fontStyle(1.5em);
+    @include fontStyle(1.3em);
   }
 
   button {

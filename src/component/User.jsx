@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import API from "../component/API/axios";
+import './style/User.scss'
 
 const User = () => {
   const [user, setUser] = useState([]);
@@ -16,10 +17,9 @@ const User = () => {
   }, []);
 
   return (
-    <div>
-      <h2>user</h2>
-      <div>{user.name}</div>
-      <div>{user.email}</div>
+    <div className='user'>
+      <h2>Welcome</h2>
+      <div className='user-username' >{user.name}</div>
     </div>
   );
 };

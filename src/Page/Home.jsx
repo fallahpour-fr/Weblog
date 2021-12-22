@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import {
   useHistory,
   Link,
@@ -8,13 +8,13 @@ import {
   BrowserRouter,
   useRouteMatch,
 } from "react-router-dom";
-import "./Home.css";
 import API from "../component/API/axios";
 import ErrorModal from "../component/ErrorModal";
 import Post from "../component/Post";
 import OnePost from "../component/OnePost";
 import { useAuth } from "../component/context/auth";
-import User from '../component/User'
+import User from "../component/User";
+import "../component/style/Home.scss";
 
 const Home = () => {
   const [errorModule, setErrorModal] = useState();
@@ -56,31 +56,34 @@ const Home = () => {
       });
   };
 
+  // <div className="mainPage">
+  //   <h1>Hello</h1>
+  // </div>;
 
   return (
-    <div>
-      <BrowserRouter>
-        <div>
-          {errorModule && (
-            <ErrorModal
-              title={errorModule.title}
-              message={errorModule.message}
-              onConfirm={errorHandler}
-            />
-          )}
-          <User />
-          <Switch>
-            <Route path='/' exact >
-              <h1>Home</h1>
-              <Post removed={removed} postForm={postForm} />
-            </Route>
-            <Route path="/post/:id">
-              <OnePost />
-            </Route>
-          </Switch>
-        </div>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      {errorModule && (
+        <ErrorModal
+          title={errorModule.title}
+          message={errorModule.message}
+          onConfirm={errorHandler}
+        />
+      )}
+      <Switch>
+        <Route path="/" exact>
+          <div className="mainPage">
+            <User />
+          </div>
+          <div className="row allPost">
+            <h1> all posts </h1>
+            <Post removed={removed} postForm={postForm} />
+          </div>
+        </Route>
+        <Route path="/post/:id">
+          <OnePost />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 

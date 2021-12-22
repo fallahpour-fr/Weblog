@@ -1,0 +1,52 @@
+@import "./variable.scss";
+
+.posts {
+  width: 100%;
+  color: $darkgreen;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.post {
+  background-color: $with;
+  margin: 10px;
+  border: 1px solid $withsmoke;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1em;
+  width: 20em;
+  border-radius: 1em;
+}
+
+.post-title {
+  list-style-type: none;
+  color: $darkgreen;
+  margin-bottom: 30px;
+  @include fontStyle(2em);
+}
+
+.post-title:hover {
+  color: $ligthbrown;
+}
+
+.deleteButton {
+  margin-top: 15px;
+  @include buttonStyle;
+
+  &:hover {
+    color: $ligthbrown;
+    background-color: $with;
+    border: 2px solid $ligthbrown;
+  }
+}
+
+.post-detailes {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid $withsmoke;
+  width: 100%;
+}

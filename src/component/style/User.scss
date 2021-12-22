@@ -1,0 +1,22 @@
+@import "./variable.scss";
+
+.user {
+  background-color: $ligthbrown;
+  width: 10%;
+  padding: 1em;
+  margin-left: 30px;
+  // position: absolute;
+}
+
+.user h2 {
+  color: $with;
+  @include fontStyle(2em);
+  text-align: center;
+  font-weight: 700;
+}
+
+.user-username {
+  color: $with;
+  text-align: center;
+  @include fontStyle(1em);
+}

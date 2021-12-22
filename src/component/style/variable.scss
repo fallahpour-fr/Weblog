@@ -1,14 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Gloria+Hallelujah&family=Kalam:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Gloria+Hallelujah&family=Kalam:wght@300&display=swap");
 
 //color
-$ligthbrown:rgb(152,108,67);
-$darkgreen:rgb(54,64,55);
-$with:rgb(245, 245, 245);
+$ligthbrown: rgb(152, 108, 67);
+$darkgreen: rgb(54, 64, 55);
+$with: rgb(233, 233, 233);
+$withsmoke:rgb(156, 156, 156);
 
 //fontStyle
 @mixin fontStyle($fontSize) {
-    font-family: 'Kalam', cursive;
-    font-size: $fontSize;
+  font-family: "Kalam", cursive;
+  font-size: $fontSize;
+  text-transform: capitalize;
 }
 
 //transition
@@ -16,14 +18,16 @@ $transition-duration: 0.5s;
 
 //button
 @mixin buttonStyle {
-    border: none;
-    background-color: $ligthbrown;
-    color: $with;
-    border-radius: 10px;
-    height: 2.5em;
-    width: 5.5em;
-    font-family: 'Kalam', cursive;
-    font-size: 1.3em;
-    cursor: pointer;
-    transition-duration: $transition-duration;
+  border: none;
+  background-color: $ligthbrown;
+  color: $with;
+  border-radius: 10px;
+  height: 2.5em;
+  width: 5.5em;
+  font-family: "Kalam", cursive;
+  font-size: 1.3em;
+  cursor: pointer;
+  transition-duration: $transition-duration;
+  font-weight: 700;
 }
+

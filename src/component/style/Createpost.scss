@@ -1,11 +1,56 @@
 @import "./variable.scss";
 
 .createpost {
+  padding: 1px;
   width: 100%;
-  background-color: rgb(255, 0, 170);
+  // height: 87.4vh;
+  // background-color: rgb(255, 0, 170);
 }
 
-.writePost{
-    width: 90%;
-    background-color: orange;
+.writeForm {
+  width: 90%;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  // background-color: orange;
+}
+
+.writeInput {
+  @include fontStyle(2.2em);
+  border-bottom: 1px solid $darkgreen;
+  border: none;
+  padding: 1em;
+  width: 100%;
+}
+
+.writeInput::placeholder {
+  color: $withsmoke;
+  font-weight: 400;
+}
+
+.writeInput:focus {
+  outline-style: none;
+  border: none;
+}
+
+.writeTextParent {
+  height: 50vh;
+}
+
+.writeText {
+  // width: 100%;
+  height: 90vh;
+  padding: 1em;
+  @include fontStyle(1.8em);
+  border: none;
+}
+
+.submitButton {
+  @include buttonStyle();
+}
+
+.submitButton:hover {
+  color: $ligthbrown;
+  background-color: white;
 }

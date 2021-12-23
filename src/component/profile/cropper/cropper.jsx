@@ -37,9 +37,11 @@ const RenderCropper = (props) => {
   };
 
   const onSelectFile = (event) => {
+    console.log("setimg", image);
+    console.log("event", event);
     console.log(event.target.files[0]);
     setFile(event.target.files[0]);
-    if (event.target.files && event.target.files.length > 0) {
+    if (event.target.files) {
       const reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.addEventListener("load", () => {
@@ -75,7 +77,7 @@ const RenderCropper = (props) => {
     const formData = new FormData();
     formData.append("file", file);
 
-    console.log(formData)
+    console.log(formData);
 
     API.post("/upload", {
       formData,
@@ -127,16 +129,18 @@ const RenderCropper = (props) => {
           style={{ display: "none" }}
           onChange={onSelectFile}
         />
-        <Button
-          onClick={() => {
-            onClear();
-          }}
-        >
+        <button onClick={onClear} className="btn-with">
           CLEAR
-        </Button>
-        <Button onClick={chooseImageHandler}>CHOOSE</Button>
-        <Button onClick={onDownlode}>DOWNLODE</Button>
-        <Button onClick={onUpload}>UPLOAD</Button>
+        </button>
+        <button className="btn" onClick={chooseImageHandler}>
+          CHOOSE
+        </button>
+        <button className="btn-with" onClick={onDownlode}>
+          DOWNLODE
+        </button>
+        <button className="btn" onClick={onUpload}>
+          UPLOAD
+        </button>
       </div>
     </div>
   );

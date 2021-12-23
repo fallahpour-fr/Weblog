@@ -1,32 +1,45 @@
+@import "../../style/variable.scss";
+
 .container {
-    height: 80%;
-    width: 100%;
-    margin-top: 50px;
-    background-color: rgba(170, 170, 170, 0.473);
-    position: absolute;
+  height: 90%;
+  width: 100%;
+  // margin-top: 50px;
+  background-color: $smoky;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .container-cropper {
-    height: 50vh;
+  width: 100%;
+  height: 70vh;
 }
 
 .container-button {
-    height: 10vh;
-    display: flex;
-    justify-content: center;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
 }
 
 .cropper {
-    height: 90%;
-    width: 60%;
-    margin: auto;
-    position: relative;
-    padding: 10px;
+  height: 90%;
+  width: 60%;
+  margin: auto;
+  position: relative;
+  padding: 10px;
 }
 
 .slider {
-    height: 10%;
-    width: 60%;
-    display: flex;
-    margin: auto;
+  height: 10%;
+  width: 60%;
+  display: flex;
+  margin: auto;
+}
+
+.btn {
+  @include buttonStyle();
+}
+
+.btn-with {
+  @include buttonWithStyle();
 }

@@ -93,12 +93,12 @@ function Profile() {
 
   return (
     <SnackbarRender>
-      <SimpleBackdrop>
-        <div className="parent">
+      <div className="parent">
+        <div className="row">
           <div className="title">
             <h2>Public profile</h2>
           </div>
-          <Fragment>
+          <div className="formAndAvatar">
             <div className="form">
               <Form
                 {...layout}
@@ -206,16 +206,20 @@ function Profile() {
                   <Input.TextArea className="formInputProfile" />
                 </Form.Item>
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 0 }}>
-                  <Button className='profileSubmitButton' type="primary" htmlType="submit">
+                  <Button
+                    className="profileSubmitButton"
+                    type="primary"
+                    htmlType="submit"
+                  >
                     Submit
                   </Button>
                 </Form.Item>
               </Form>
             </div>
             <Avatar />
-          </Fragment>
+          </div>
         </div>
-      </SimpleBackdrop>
+      </div>
     </SnackbarRender>
   );
 }

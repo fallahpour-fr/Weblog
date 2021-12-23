@@ -49,8 +49,3 @@
 .submitButton {
   @include buttonStyle();
 }
-
-.submitButton:hover {
-  color: $ligthbrown;
-  background-color: white;
-}

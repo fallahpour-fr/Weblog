@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./avatar.css";
+import "./avatar.scss";
 import Button from "@material-ui/core/Button";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import Grow from "@material-ui/core/Grow";
@@ -61,7 +61,7 @@ export default function Avatar() {
     <>
       <div className="avatar-container">
         <div className="avatar">
-          <img className="avatar-img"  src="" />
+          <img className="avatar-img" src="" />
         </div>
         <div>
           <Button

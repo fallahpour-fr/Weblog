@@ -36,12 +36,6 @@
 .deleteButton {
   margin-top: 15px;
   @include buttonStyle;
-
-  &:hover {
-    color: $ligthbrown;
-    background-color: $with;
-    border: 2px solid $ligthbrown;
-  }
 }
 
 .post-detailes {

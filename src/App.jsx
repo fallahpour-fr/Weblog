@@ -7,7 +7,7 @@ import "antd/dist/antd.css";
 import { AuthContext } from "./component/context/auth";
 import PrivateRoute from "./component/PrivateRoute";
 import ErrorModal from "./component/ErrorModal";
-import Profile from "./Page/Profile";
+import Profile from "./component/profile/Profile/Profile";
 import Createpost from "./Page/Createpost";
 
 

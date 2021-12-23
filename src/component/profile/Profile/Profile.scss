@@ -1,0 +1,39 @@
+@import "../../../component/style/variable.scss";
+
+.parent {
+  display: flex;
+  flex-direction: column;
+  // background-color: sandybrown;
+  width: 100%;
+  height: 100%;
+}
+
+.title {
+  border-bottom: 1px solid $withsmoke;
+  padding: 0.5em;
+  width: 35%;
+  font-weight: 900;
+
+  h2 {
+    @include fontStyle(2em);
+  }
+}
+
+.form {
+  margin-top: 10px;
+  // background-color: aquamarine;
+  width: 35%;
+
+  h4 {
+    @include fontStyle(1.1em);
+  }
+}
+
+.formInputProfile {
+  width: 130%;
+  padding: 0.7em;
+}
+
+.profileSubmitButton {
+  @include buttonStyle();
+}

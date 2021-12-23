@@ -10,7 +10,7 @@ import getCroppedImg from "../utils/cropImage";
 import { dataURLtoFile } from "../utils/dataURLtoFile";
 import API from "../../API/axios";
 
-import "./cropper.css";
+import "./cropper.scss";
 
 const useStyles = makeStyles({
   iconButton: {},

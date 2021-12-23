@@ -25,10 +25,6 @@
     @include buttonStyle();
   }
 
-  button:hover {
-    color: $ligthbrown;
-    background-color: white;
-  }
 }
 
 .header-links__link {

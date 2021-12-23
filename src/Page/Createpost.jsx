@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Input, InputNumber, Button } from "antd";
-import "./Createpost.css";
+import "../component/style/Createpost.scss";
 import { useHistory, Prompt } from "react-router-dom";
 import API from "../component/API/axios";
 import { useAuth } from "../component/context/auth";
@@ -18,10 +18,10 @@ const Createpost = () => {
   const [form] = Form.useForm();
   const history = useHistory();
   const [enteredData, setEnteredData] = useState(false);
-  const {sendPostHandler}=useAuth()
+  const { sendPostHandler } = useAuth();
   const onFinish = (values) => {
     form.resetFields();
-    values.id=Math.random()
+    values.id = Math.random();
     console.log(values);
     sendPostHandler(values);
     history.push("/");
@@ -45,31 +45,38 @@ const Createpost = () => {
         when={enteredData}
         message="Are you sure you want to leave this page ?"
       />
-      <Form
-        {...layout}
-        name="nest-messages"
-        onFinish={onFinish}
-        validateMessages={validateMessages}
-        form={form}
-        onFocus={formFocusHandler}
-      >
-        <Form.Item
-          name={"user", "Title"}
-          label="Title"
-          rules={[{ required: true }]}
+      <div className="row">
+        <Form
+          {...layout}
+          name="nest-messages"
+          onFinish={onFinish}
+          validateMessages={validateMessages}
+          form={form}
+          onFocus={formFocusHandler}
+          className="writePost"
         >
-          <Input />
-        </Form.Item>
-        
-        <Form.Item name={"user", "Post"} label="Post" rules={[{ required: true }]}>
-          <Input.TextArea />
-        </Form.Item>
-        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-          <Button type="primary" htmlType="submit" onClick={finishEnteringHandler}>
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
+          <div className="writeFormGroup">
+             
+            <Form.Item name={("user", "Title")} rules={[{ required: true }]}>
+              <Input placeholder="Title" />
+            </Form.Item>
+          </div>
+          <div className="writeFormGroup">
+            <Form.Item name={("user", "Post")} rules={[{ required: true }]}>
+              <Input.TextArea placeholder="Write your post ..." />
+            </Form.Item>
+          </div>
+          <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+            <Button
+              type="primary"
+              htmlType="submit"
+              onClick={finishEnteringHandler}
+            >
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
   );
 };

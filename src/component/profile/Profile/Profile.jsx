@@ -94,130 +94,128 @@ function Profile() {
   return (
     <SnackbarRender>
       <div className="parent">
-        <div className="row">
-          <div className="title">
-            <h2>Public profile</h2>
-          </div>
-          <div className="formAndAvatar">
-            <div className="form">
-              <Form
-                {...layout}
-                value="nest-messages"
-                onFinish={onFinish}
-                validateMessages={validateMessages}
-                form={form}
-                initialValues={{
-                  prefix: "98",
-                }}
+        <div className="title">
+          <h2>Public profile</h2>
+        </div>
+        <div className="formAndAvatar">
+          <div className="form">
+            <Form
+              {...layout}
+              value="nest-messages"
+              onFinish={onFinish}
+              validateMessages={validateMessages}
+              form={form}
+              initialValues={{
+                prefix: "98",
+              }}
+            >
+              <Form.Item
+                name="name"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your Full name",
+                  },
+                ]}
               >
-                <Form.Item
-                  name="name"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your Full name",
-                    },
-                  ]}
+                <h4>Full name</h4>
+                <Input className="formInputProfile" />
+              </Form.Item>
+              <Form.Item
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your password!",
+                  },
+                ]}
+                hasFeedback
+              >
+                <h4>Password</h4>
+                <Input.Password className="formInputProfile" />
+              </Form.Item>
+              <Form.Item
+                name="username"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your Username!",
+                    whitespace: true,
+                  },
+                ]}
+              >
+                <h4>Username</h4>
+                <Input className="formInputProfile" />
+              </Form.Item>
+              <Form.Item
+                name="email"
+                rules={[
+                  {
+                    type: "email",
+                    required: true,
+                    message: "Please input your email",
+                  },
+                ]}
+              >
+                <h4>Email</h4>
+                <Input className="formInputProfile" />
+              </Form.Item>
+              <Form.Item
+                name="phone"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your phone number!",
+                  },
+                  {
+                    pattern: /^(?:\d*)$/,
+                    message: "Value should contain just number",
+                  },
+                  {
+                    pattern: /^[\d]{10}$/,
+                    message: "Value should be less than 10 character",
+                  },
+                ]}
+              >
+                <h4>Phone number</h4>
+                <Input
+                  addonBefore={prefixSelector}
+                  className="formInputProfile"
+                />
+              </Form.Item>
+              <Form.Item
+                name="age"
+                rules={[
+                  {
+                    type: "number",
+                    min: 0,
+                    max: 99,
+                  },
+                ]}
+              >
+                <h4>Age</h4>
+                <InputNumber className="formInputProfile" />
+              </Form.Item>
+              <Form.Item name="website">
+                <h4>Website</h4>
+                <Input className="formInputProfile" />
+              </Form.Item>
+              <Form.Item name="introduction">
+                <h4>Introduction</h4>
+                <Input.TextArea className="formInputProfile" />
+              </Form.Item>
+              <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 0 }}>
+                <Button
+                  className="profileSubmitButton"
+                  type="primary"
+                  htmlType="submit"
                 >
-                  <h4>Full name</h4>
-                  <Input className="formInputProfile" />
-                </Form.Item>
-                <Form.Item
-                  name="password"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your password!",
-                    },
-                  ]}
-                  hasFeedback
-                >
-                  <h4>Password</h4>
-                  <Input.Password className="formInputProfile" />
-                </Form.Item>
-                <Form.Item
-                  name="username"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your Username!",
-                      whitespace: true,
-                    },
-                  ]}
-                >
-                  <h4>Username</h4>
-                  <Input className="formInputProfile" />
-                </Form.Item>
-                <Form.Item
-                  name="email"
-                  rules={[
-                    {
-                      type: "email",
-                      required: true,
-                      message: "Please input your email",
-                    },
-                  ]}
-                >
-                  <h4>Email</h4>
-                  <Input className="formInputProfile" />
-                </Form.Item>
-                <Form.Item
-                  name="phone"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your phone number!",
-                    },
-                    {
-                      pattern: /^(?:\d*)$/,
-                      message: "Value should contain just number",
-                    },
-                    {
-                      pattern: /^[\d]{10}$/,
-                      message: "Value should be less than 10 character",
-                    },
-                  ]}
-                >
-                  <h4>Phone number</h4>
-                  <Input
-                    addonBefore={prefixSelector}
-                    className="formInputProfile"
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="age"
-                  rules={[
-                    {
-                      type: "number",
-                      min: 0,
-                      max: 99,
-                    },
-                  ]}
-                >
-                  <h4>Age</h4>
-                  <InputNumber className="formInputProfile" />
-                </Form.Item>
-                <Form.Item name="website">
-                  <h4>Website</h4>
-                  <Input className="formInputProfile" />
-                </Form.Item>
-                <Form.Item name="introduction">
-                  <h4>Introduction</h4>
-                  <Input.TextArea className="formInputProfile" />
-                </Form.Item>
-                <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 0 }}>
-                  <Button
-                    className="profileSubmitButton"
-                    type="primary"
-                    htmlType="submit"
-                  >
-                    Submit
-                  </Button>
-                </Form.Item>
-              </Form>
-            </div>
-            <Avatar />
+                  Submit
+                </Button>
+              </Form.Item>
+            </Form>
           </div>
+          <Avatar />
         </div>
       </div>
     </SnackbarRender>

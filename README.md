@@ -4,22 +4,22 @@ This project contains ReactBlog website's frontend source code. It has been buil
 
 ## Features
 
-bolt An online blog for writing and sharing information.<br>
-bolt Needs authentication for share information.<br>
-bolt Easy to register and fast to start.<br>
-bolt Edit a Blog.<br>
-bolt Delete a Blog.<br>
-bolt Get list of all Blogs.<br>
-bolt Show information in profile and choose image .<br>
+* An online blog for writing and sharing information.<br>
+* Needs authentication for share information.<br>
+* Easy to register and fast to start.<br>
+* Edit a Blog.<br>
+* Delete a Blog.<br>
+* Get list of all Blogs.<br>
+* Show information in profile and choose image .<br>
 
 ## Built with
 
-bolt Use Sass for style.<br>
-bolt Connect to local server that link is [here](https://github.com/fallahpour-fr/LocalServer).<br>
-bolt Use Ant-design .<br>
-bolt Use Axios for sending data .<br>
-bolt Use Material-UI .<br>
+* Use Sass for style.<br>
+* Connect to local server that link is [here](https://github.com/fallahpour-fr/LocalServer).<br>
+* Use Ant-design .<br>
+* Use Axios for sending data .<br>
+* Use Material-UI .<br>
 
 # Requirements
 
-bolt node.js (https://nodejs.org/)
+* node.js (https://nodejs.org/)

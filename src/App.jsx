@@ -9,7 +9,7 @@ import PrivateRoute from "./component/PrivateRoute";
 import ErrorModal from "./component/ErrorModal";
 import Profile from "./component/profile/Profile/Profile";
 import Createpost from "./Page/Createpost";
-
+import OnePost from "./component/OnePost";
 
 function App() {
   const [errorModule, setErrorModal] = useState();
@@ -65,6 +65,7 @@ function App() {
             <PrivateRoute path="/" exact comp={Home} />
             <PrivateRoute path="/profile" comp={Profile} />
             <PrivateRoute path="/createpost" comp={Createpost} />
+           
           </AuthContext.Provider>
         </Switch>
       </div>

@@ -37,6 +37,7 @@ const RenderCropper = (props) => {
   };
 
   const onSelectFile = (event) => {
+    console.log(inputRef);
     console.log("setimg", image);
     console.log("event", event);
     console.log(event.target.files[0]);
@@ -60,24 +61,30 @@ const RenderCropper = (props) => {
     if (!image)
       return setStateSnackbarContext(true, "please select an image", "warning");
     setImage(null);
+    inputRef.current.value = null;
   };
 
   const onUpload = async () => {
     if (!image)
       return setStateSnackbarContext(true, "please select an image", "warning");
 
-    console.log(image);
+    console.log("image", image);
     const convanse = await getCroppedImg(image, croppeArea);
-    console.log(convanse);
+    console.log("convanse", convanse);
     const canvasDataUrl = convanse.toDataURL("image/jpeg");
 
     const convertedUrl = dataURLtoFile(canvasDataUrl, "cropped-img.jpeg");
-    console.log(convertedUrl.name);
+    console.log("convertedUrl", convertedUrl);
 
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("file", convertedUrl);
 
-    console.log(formData);
+    // console.log("formData", formData);
+    // for (var [key, value] of formData.entries()) { 
+    //   console.log(key, value);
+    // }
+
+    console.log(...formData)
 
     API.post("/upload", {
       formData,

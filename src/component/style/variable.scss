@@ -1,18 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Gloria+Hallelujah&family=Kalam:wght@300&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@200&family=Dancing+Script:wght@500&family=Gloria+Hallelujah&family=Kalam:wght@300&family=Open+Sans:wght@300&display=swap');
 
 //color
 $ligthbrown: rgb(152, 108, 67);
 $darkgreen: rgb(54, 64, 55);
 $with: rgb(233, 233, 233);
 $withsmoke: rgb(156, 156, 156);
-$smoky:rgba(77, 77, 77, 0.493);
-$ligthgray:rgb(221, 221, 221);
+$smoky: rgba(77, 77, 77, 0.493);
+$ligthgray: rgb(221, 221, 221);
 
 //fontStyle
 @mixin fontStyle($fontSize) {
   font-family: "Kalam", cursive;
   font-size: $fontSize;
   text-transform: capitalize;
+}
+
+@mixin fontStyleForParagraph($fontSize) {
+  font-family: 'Barlow Condensed', sans-serif;;
+  font-size: $fontSize;
 }
 
 //transition

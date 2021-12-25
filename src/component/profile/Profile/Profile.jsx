@@ -109,6 +109,7 @@ function Profile() {
                 prefix: "98",
               }}
             >
+              <h4>name</h4>
               <Form.Item
                 name="name"
                 rules={[
@@ -118,9 +119,9 @@ function Profile() {
                   },
                 ]}
               >
-                <h4>Full name</h4>
                 <Input className="formInputProfile" />
               </Form.Item>
+              <h4>Password</h4>
               <Form.Item
                 name="password"
                 rules={[
@@ -129,11 +130,10 @@ function Profile() {
                     message: "Please input your password!",
                   },
                 ]}
-                hasFeedback
               >
-                <h4>Password</h4>
                 <Input.Password className="formInputProfile" />
               </Form.Item>
+              <h4>Username</h4>
               <Form.Item
                 name="username"
                 rules={[
@@ -144,9 +144,9 @@ function Profile() {
                   },
                 ]}
               >
-                <h4>Username</h4>
                 <Input className="formInputProfile" />
               </Form.Item>
+              <h4>Email</h4>
               <Form.Item
                 name="email"
                 rules={[
@@ -157,9 +157,9 @@ function Profile() {
                   },
                 ]}
               >
-                <h4>Email</h4>
                 <Input className="formInputProfile" />
               </Form.Item>
+              <h4>Phone number</h4>
               <Form.Item
                 name="phone"
                 rules={[
@@ -177,12 +177,12 @@ function Profile() {
                   },
                 ]}
               >
-                <h4>Phone number</h4>
                 <Input
                   addonBefore={prefixSelector}
                   className="formInputProfile"
                 />
               </Form.Item>
+              <h4>Age</h4>
               <Form.Item
                 name="age"
                 rules={[
@@ -193,15 +193,14 @@ function Profile() {
                   },
                 ]}
               >
-                <h4>Age</h4>
                 <InputNumber className="formInputProfile" />
               </Form.Item>
+              <h4>Website</h4>
               <Form.Item name="website">
-                <h4>Website</h4>
                 <Input className="formInputProfile" />
               </Form.Item>
+              <h4>Introduction</h4>
               <Form.Item name="introduction">
-                <h4>Introduction</h4>
                 <Input.TextArea className="formInputProfile" />
               </Form.Item>
               <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 0 }}>

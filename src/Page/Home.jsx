@@ -11,11 +11,9 @@ import {
 import API from "../component/API/axios";
 import ErrorModal from "../component/ErrorModal";
 import Post from "../component/Post";
-import OnePost from "../component/OnePost";
 import { useAuth } from "../component/context/auth";
 import User from "../component/User";
 import "../component/style/Home.scss";
-import CommentHandler from '../component/Commnt'
 
 const Home = () => {
   const [errorModule, setErrorModal] = useState();
@@ -57,10 +55,6 @@ const Home = () => {
       });
   };
 
-  // <div className="mainPage">
-  //   <h1>Hello</h1>
-  // </div>;
-
   return (
     <BrowserRouter>
       {errorModule && (
@@ -79,12 +73,6 @@ const Home = () => {
             <h1> all posts </h1>
             <Post removed={removed} postForm={postForm} />
           </div>
-          <div>
-            <CommentHandler />
-          </div>
-        </Route>
-        <Route path="/post/:id">
-          <OnePost />
         </Route>
       </Switch>
     </BrowserRouter>

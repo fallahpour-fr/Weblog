@@ -4,49 +4,40 @@ import moment from "moment";
 
 const { TextArea } = Input;
 
-// {comments.length > 0 && (
-//   <List
-//     dataSource={comments}
-//     header={`${comments.length} ${
-//       comments.length > 1 ? "replies" : "reply"
-//     }`}
-//     itemLayout="horizontal"
-//     renderItem={(props) => <Comment {...props} />}
-//   />
-// )}
-
 const CommentHandler = () => {
   const [comments, setComments] = useState([]);
-  const [allComment, setAllComment] = useState([]);
   const [value, setValue] = useState("");
-
- 
 
   const handleSubmit = (props) => {
     setValue("");
-    // setComments([
-    //   {
-    //     author: "Han Solo",
-    //     avatar: "https://joeschmoe.io/api/v1/random",
-    //     content: <p>{value}</p>,
-    //     datetime: moment().fromNow(),
-    //   },
-    // ]);
-    setComments([value]);
-
-    handleComment(comments);
+    setComments((preValue) => {
+      return [
+        ...preValue,
+        {
+          author: "Han Solo",
+          avatar: "https://joeschmoe.io/api/v1/random",
+          content: <p>{value}</p>,
+          datetime: moment().fromNow(),
+        },
+      ];
+    });
   };
-  // console.log(comments);
-  // handleComment(comments);
   const handleChange = (e) => {
     setValue(e.target.value);
   };
 
   return (
     <>
-      {allComment.map((item) => {
-        <p>{item}</p>;
-      })}
+      {comments.length > 0 && (
+        <List
+          dataSource={comments}
+          header={`${comments.length} ${
+            comments.length > 1 ? "replies" : "reply"
+          }`}
+          itemLayout="horizontal"
+          renderItem={(props) => <Comment {...props} />}
+        />
+      )}
       <Comment
         avatar={
           <Avatar src="https://joeschmoe.io/api/v1/random" alt="Han Solo" />

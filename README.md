@@ -11,6 +11,7 @@ This project contains ReactBlog website's frontend source code. It has been buil
 * Delete a Blog.<br>
 * Get list of all Blogs.<br>
 * Show information in profile and choose image .<br>
+* Ligth and dark mode.<br>
 
 ## Built with
 

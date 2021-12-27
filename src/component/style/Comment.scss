@@ -1,0 +1,30 @@
+@import "./variable.scss";
+
+.commentParent {
+  width: 40%;
+  padding: 1.5em;
+  border: 1px solid $ligthgray;
+  border-radius: 1em;
+
+  h2 {
+    @include fontStyle(1.5em);
+  }
+}
+
+.commentTexterea {
+  padding: 1em;
+  width: 500px;
+  @include fontStyle(1em);
+}
+
+.commentButton {
+  @extend %buttonStyle;
+}
+
+.commentButton::after {
+  @extend %buttonStyle;
+}
+
+.commentItem {
+  margin: 0;
+}

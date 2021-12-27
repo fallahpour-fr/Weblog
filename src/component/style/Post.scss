@@ -35,7 +35,7 @@
 
 .deleteButton {
   margin-top: 15px;
-  @include buttonStyle;
+  @extend %buttonStyle;
 }
 
 .post-detailes {

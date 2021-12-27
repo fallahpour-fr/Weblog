@@ -25,15 +25,16 @@ $ligthgray: rgb(221, 221, 221);
 $transition-duration: 0.5s;
 
 //button
-@mixin buttonStyle {
+%buttonStyle {
   border: none;
   background-color: $ligthbrown;
   color: $with;
   border-radius: 10px;
   height: 2.5em;
-  width: 5.5em;
+  width:7em;
   font-family: "Kalam", cursive;
   font-size: 1.1em;
+  padding: 0.3em;
   cursor: pointer;
   transition-duration: $transition-duration;
   font-weight: 800;
@@ -46,7 +47,7 @@ $transition-duration: 0.5s;
   }
 }
 
-@mixin buttonWithStyle {
+%buttonWithStyle {
   border: none;
   background-color: $with;
   border: 2px solid $ligthbrown;

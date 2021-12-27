@@ -37,9 +37,9 @@
 }
 
 .btn {
-  @include buttonStyle();
+  @extend %buttonStyle;
 }
 
 .btn-with {
-  @include buttonWithStyle();
+  @extend %buttonWithStyle;
 }

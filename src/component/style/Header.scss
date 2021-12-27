@@ -22,7 +22,7 @@
   }
 
   button {
-    @include buttonStyle();
+    @extend %buttonStyle;
   }
 
 }

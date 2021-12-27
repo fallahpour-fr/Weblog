@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "./API/axios";
 import "./style/OnePost.scss";
+import CommentHandler from "./Comment";
 
 const OnePost = () => {
   const params = useParams();
@@ -10,12 +11,12 @@ const OnePost = () => {
   console.log(Id);
 
   useEffect(() => {
-    console.log('code')
+    console.log("code");
     API.post("/postdata", {
       Id,
     })
       .then((response) => {
-        console.log('post',response.data.post);
+        console.log("post", response.data.post);
         setData(response.data.post);
       })
       .catch((err) => {
@@ -32,7 +33,7 @@ const OnePost = () => {
             <h2>{data.Title}</h2>
             <p>{data.Post}</p>
           </div>
-         
+          <CommentHandler />
         </div>
       </div>
     </div>

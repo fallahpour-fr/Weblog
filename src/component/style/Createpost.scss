@@ -47,5 +47,5 @@
 }
 
 .submitButton {
-  @include buttonStyle();
+  @extend %buttonStyle;
 }

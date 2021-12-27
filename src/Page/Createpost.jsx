@@ -18,12 +18,12 @@ const Createpost = () => {
   const [form] = Form.useForm();
   const history = useHistory();
   const [enteredData, setEnteredData] = useState(false);
-  const { sendPostHandler } = useAuth();
+  // const { sendPostHandler } = useAuth();
   const onFinish = (values) => {
     form.resetFields();
     values.id = Math.random();
     console.log(values);
-    sendPostHandler(values);
+    // sendPostHandler(values);
     history.push("/");
     API.post("/createpost", {
       values,
@@ -31,7 +31,6 @@ const Createpost = () => {
   };
 
   const formFocusHandler = () => {
-    console.log("focuse !");
     setEnteredData(true);
   };
 

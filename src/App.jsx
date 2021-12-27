@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import SignIn from "./Page/Sign-in";
 import SignUp from "./Page/Sign-up";
 import Home from "./Page/Home";
-import { BrowserRouter, Route, Switch, useRouteMatch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch, useRouteMatch } from "react-router-dom";
 import "antd/dist/antd.css";
 import { AuthContext } from "./component/context/auth";
 import PrivateRoute from "./component/PrivateRoute";
 import ErrorModal from "./component/ErrorModal";
 import Profile from "./component/profile/Profile/Profile";
 import Createpost from "./Page/Createpost";
+import Post from "./component/Post";
 import OnePost from "./component/OnePost";
-
 function App() {
   const [errorModule, setErrorModal] = useState();
   const [authTokens, setAuthTokens] = useState(localStorage.getItem("tokens"));
-  const [postForm, setPostForm] = useState([]);
+  // const [postForm, setPostForm] = useState([]);
   const setTokens = (token) => {
     localStorage.setItem("tokens", token);
     console.log(token);
@@ -29,12 +29,15 @@ function App() {
     setErrorModal(null);
   };
 
-  const sendPostHandler = (value) => {
-    console.log(value);
-    setPostForm((preValue) => {
-      return [...preValue, value];
-    });
-  };
+  // const sendPostHandler = (value) => {
+  //   console.log(value);
+  //   setPostForm((preValue) => {
+  //     return [...preValue, value];
+  //   });
+  // };
+  // postForm,
+  // sendPostHandler: sendPostHandler,
+  // setPostForm,
 
   return (
     <BrowserRouter>
@@ -51,9 +54,6 @@ function App() {
             value={{
               authTokens,
               setAuthTokens: setTokens,
-              postForm,
-              sendPostHandler: sendPostHandler,
-              setPostForm,
             }}
           >
             <Route path="/signin">
@@ -65,9 +65,7 @@ function App() {
             <PrivateRoute path="/" exact comp={Home} />
             <PrivateRoute path="/profile" comp={Profile} />
             <PrivateRoute path="/createpost" comp={Createpost} />
-            <Route path='/post/:id' >
-              <OnePost/>
-            </Route>
+            <PrivateRoute path="/post/:id" exact comp={OnePost} />
           </AuthContext.Provider>
         </Switch>
       </div>

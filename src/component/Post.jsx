@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+import { Route, Switch, Link, useRouteMatch } from "react-router-dom";
+import OnePost from "./OnePost";
 import "./style/Post.scss";
 
 const Post = (props) => {
   let form = props.postForm;
+
+  let { path, url } = useRouteMatch();
 
   return (
     <div className="posts">
@@ -11,7 +14,7 @@ const Post = (props) => {
           <Link className="post-title" to={`/post/${item.id}`}>
             {item.Title}
           </Link>
-          <div className='post-detailes' >
+          <div className="post-detailes">
             <button
               className="deleteButton"
               onClick={() => {
@@ -22,7 +25,7 @@ const Post = (props) => {
             </button>
           </div>
         </div>
-      ))}
+      ))} 
     </div>
   );
 };

@@ -14,6 +14,7 @@ import Post from "../component/Post";
 import { useAuth } from "../component/context/auth";
 import User from "../component/User";
 import "../component/style/Home.scss";
+import EdittorHandler from "../component/EdittorHandler";
 
 const Home = () => {
   const [errorModule, setErrorModal] = useState();

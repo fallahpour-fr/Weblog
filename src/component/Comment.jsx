@@ -30,8 +30,7 @@ const CommentHandler = () => {
   console.log(comments);
   return (
     <div className="commentParent">
-       <div className='commentSharePostButton'>
-       </div>
+      <div className="commentSharePostButton"></div>
       <h2>comment</h2>
       <div className="commentStyle">
         {comments.length > 0 && (
@@ -50,14 +49,7 @@ const CommentHandler = () => {
           }
           content={
             <>
-              <Form.Item
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your Password!",
-                  },
-                ]}
-              >
+              <Form.Item>
                 <TextArea
                   rows={4}
                   className="commentTexterea"

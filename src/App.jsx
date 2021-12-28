@@ -65,7 +65,7 @@ function App() {
             <PrivateRoute path="/" exact comp={Home} />
             <PrivateRoute path="/profile" comp={Profile} />
             <PrivateRoute path="/createpost" comp={Createpost} />
-            <PrivateRoute path="/post/:id" exact comp={OnePost} />
+            <PrivateRoute path="/post/:id" comp={OnePost} />
           </AuthContext.Provider>
         </Switch>
       </div>

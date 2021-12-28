@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Form, Input, InputNumber, Button } from "antd";
 import "../component/style/Createpost.scss";
 import { useHistory, Prompt } from "react-router-dom";
@@ -17,9 +17,16 @@ const validateMessages = {
 const Createpost = () => {
   const [form] = Form.useForm();
   const history = useHistory();
+  // let textVal = refText.current.resizableTextArea.props.value;
+  // let cursorStart = textVal.selectionStart;
+  // let cursorEnd = textVal.selectionEnd;
+  const [textValue, setTextValue] = useState("");
   const [enteredData, setEnteredData] = useState(false);
+  const [selectedText, setSelectedText] = useState();
+  const refText = useRef();
   // const { sendPostHandler } = useAuth();
   const onFinish = (values) => {
+    // console.log(refText.current.resizableTextArea.props.value);
     form.resetFields();
     values.id = Math.random();
     console.log(values);
@@ -30,6 +37,16 @@ const Createpost = () => {
     });
   };
 
+  const onchangeHandler = (event) => {
+    // console.log(event.target.value);
+    setTextValue(event.target.value);
+  };
+
+  const handleMouseUp = () => {
+    console.log(`Selected text: ${window.getSelection().toString()}`);
+    setSelectedText(window.getSelection().toString());
+  };
+
   const formFocusHandler = () => {
     setEnteredData(true);
   };
@@ -37,7 +54,6 @@ const Createpost = () => {
   const finishEnteringHandler = () => {
     setEnteredData(false);
   };
-
   return (
     <div className="createpost">
       <Prompt
@@ -60,10 +76,19 @@ const Createpost = () => {
             </Form.Item>
           </div>
           <div className="writeFormGroup">
-            <Form.Item className='writeTextParent' name={("user", "Post")} rules={[{ required: true }]}>
+            <Form.Item
+              className="writeTextParent"
+              name={("user", "Post")}
+              rules={[{ required: true }]}
+            >
               <Input.TextArea
+                ref={refText}
+                rows={8}
                 className="writeText"
                 placeholder="Write your post ..."
+                onChange={onchangeHandler}
+                value={textValue}
+                onMouseUp={handleMouseUp}
               />
             </Form.Item>
           </div>

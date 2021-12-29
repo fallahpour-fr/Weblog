@@ -3,8 +3,6 @@ import { Form, Input, InputNumber, Button } from "antd";
 import "../component/style/Createpost.scss";
 import { useHistory, Prompt } from "react-router-dom";
 import API from "../component/API/axios";
-import { useAuth } from "../component/context/auth";
-
 const layout = {
   labelCol: { span: 20 },
   wrapperCol: { span: 40 },
@@ -17,20 +15,14 @@ const validateMessages = {
 const Createpost = () => {
   const [form] = Form.useForm();
   const history = useHistory();
-  // let textVal = refText.current.resizableTextArea.props.value;
-  // let cursorStart = textVal.selectionStart;
-  // let cursorEnd = textVal.selectionEnd;
   const [textValue, setTextValue] = useState("");
   const [enteredData, setEnteredData] = useState(false);
   const [selectedText, setSelectedText] = useState();
   const refText = useRef();
-  // const { sendPostHandler } = useAuth();
   const onFinish = (values) => {
-    // console.log(refText.current.resizableTextArea.props.value);
     form.resetFields();
     values.id = Math.random();
     console.log(values);
-    // sendPostHandler(values);
     history.push("/");
     API.post("/createpost", {
       values,
@@ -38,7 +30,6 @@ const Createpost = () => {
   };
 
   const onchangeHandler = (event) => {
-    // console.log(event.target.value);
     setTextValue(event.target.value);
   };
 

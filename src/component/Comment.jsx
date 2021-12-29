@@ -2,31 +2,59 @@ import React, { useState } from "react";
 import { Comment, Avatar, Form, Button, List, Input } from "antd";
 import moment from "moment";
 import "../component/style/Comment.scss";
+import { Editor } from "react-draft-wysiwyg";
+import { EditorState, convertToRaw } from "draft-js";
+import draftToMarkdown from "draftjs-to-markdown";
 
-const { TextArea } = Input;
+// <Form.Item>
+// <TextArea
+//   rows={4}
+//   className="commentTexterea"
+//   onChange={handleChange}
+//   value={value}
+//   className="commentItem"
+// />
+// </Form.Item>
+// const { TextArea } = Input;
 
 const CommentHandler = () => {
   const [comments, setComments] = useState([]);
-  const [value, setValue] = useState("");
+  const [editorState, seteditorState] = useState(EditorState.createEmpty());
+  const [condition, setCondition] = useState(false)
 
   const handleSubmit = () => {
-    setValue("");
-    setComments((preValue) => {
+    seteditorState(EditorState.createEmpty());
+    setCondition(false)
+    setComments((preveditorState) => {
       return [
-        ...preValue,
+        ...preveditorState,
         {
           author: "Han Solo",
           avatar: "https://joeschmoe.io/api/v1/random",
-          content: <p>{value}</p>,
+          content: (
+            <p>
+              {draftToMarkdown(convertToRaw(editorState.getCurrentContent())).toString()}
+            </p>
+          ),
           datetime: moment().fromNow(),
         },
       ];
     });
   };
-  const handleChange = (e) => {
-    setValue(e.target.value);
+  const onEditorStateChange = (e) => {
+    seteditorState(e);
+    setCondition(true)
   };
 
+  const [toolbarHidden, settoolbarHidden] = useState(false);
+
+  const toggleToolbar = () => {
+    settoolbarHidden(!toolbarHidden);
+  };
+
+  // value={editorState && draftToMarkdown(convertToRaw(editorState.getCurrentContent()))}
+
+  // console.log(draftToMarkdown(convertToRaw(editorState.getCurrentContent())));
   console.log(comments);
   return (
     <div className="commentParent">
@@ -49,22 +77,28 @@ const CommentHandler = () => {
           }
           content={
             <>
-              <Form.Item>
-                <TextArea
-                  rows={4}
-                  className="commentTexterea"
-                  onChange={handleChange}
-                  value={value}
-                  className="commentItem"
-                />
-              </Form.Item>
+              <div className="rdw-storybook-root">
+                <div className="rdw-storybook-locale-wrapper">
+                  <button className='btnShowEditor' onClick={toggleToolbar}>
+                    {toolbarHidden ? "show Editor" : "Hide Editor"}
+                  </button>
+                </div>
+                <Editor
+                    toolbarHidden={toolbarHidden}
+                    toolbarClassName="rdw-storybook-toolbar"
+                    wrapperClassName="rdw-storybook-wrapper"
+                    editorClassName="rdw-storybook-editor"
+                    onEditorStateChange={onEditorStateChange}
+                  />
+              </div>
+
               <Form.Item>
                 <Button
                   className="commentButton"
                   htmlType="submit"
-                  type="primary"
+                  type='primary'
                   onClick={handleSubmit}
-                  disabled={!value}
+                  disabled={!condition}
                 >
                   Add Comment
                 </Button>

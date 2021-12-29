@@ -1,12 +1,12 @@
 @import "./variable.scss";
 
 .commentParent {
-  width: 40%;
+  width: 50%;
   margin-top: 100px;
   padding: 1.5em;
   border: 1px solid $ligthgray;
   border-radius: 1em;
-
+  position: relative;
   h2 {
     @include fontStyle(1.5em);
   }
@@ -18,14 +18,45 @@
   @include fontStyle(1em);
 }
 
-.commentButton {
+.commentButton{
   @extend %buttonStyle;
+  margin-top: 40px;
 }
 
 .commentButton::after {
   @extend %buttonStyle;
 }
 
-.commentItem {
-  margin: 0;
+
+.rdw-storybook-root{
+  height: 40vh;
+  padding: 0.5em;
+  border: 1px solid $withsmoke;
+  border-radius: 1em;
+  @include fontStyleForParagraph(1em);
+}
+
+.rdw-storybook-locale-wrapper {
+  margin-bottom: 5px;
+}
+
+
+.rdw-storybook-toolbar {
+  top: -80px;
+  left: 110px;
+  position: absolute;
+  width: 90%;
+}
+
+.btnShowEditor{
+  border: none;
+  background-color: $ligthbrown;
+  font-family: "Kalam", cursive;
+  font-size: 1.1em;
+  color: $with;
+  width:20%;
+  height: 10%;
+  border-radius: 1em;
+  cursor: pointer;
+  padding: 0.2em;
 }

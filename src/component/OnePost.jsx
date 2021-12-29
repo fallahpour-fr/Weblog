@@ -38,7 +38,16 @@ const OnePost = () => {
         console.log(err);
       });
   }, []);
-  // 6c4babed5a3f70b2
+
+  // <div>
+  //   <a
+  //     class="share-btn twitter"
+  //     href="https://twitter.com/share?url=http://localhost:3000/post/0.6440837173314782/link"
+  //   >
+  //     Twitter
+  //   </a>
+  // </div>;
+
   return (
     <div className="postParent">
       <div className="row">
@@ -60,11 +69,6 @@ const OnePost = () => {
               <CommentHandler />
             </Route>
           </Switch>
-          <div>
-            <a class="share-btn twitter" href="https://twitter.com/share?url=http://localhost:3000/post/0.6440837173314782/link">
-              Twitter
-            </a>
-          </div>
         </div>
       </div>
     </div>

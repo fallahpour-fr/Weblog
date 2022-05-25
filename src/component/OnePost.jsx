@@ -23,7 +23,6 @@ const OnePost = () => {
   const params = useParams();
   const [data, setData] = useState([]);
   let Id = params.id;
-  console.log(Id);
 
   useEffect(() => {
     console.log("code");
@@ -38,15 +37,6 @@ const OnePost = () => {
         console.log(err);
       });
   }, []);
-
-  // <div>
-  //   <a
-  //     class="share-btn twitter"
-  //     href="https://twitter.com/share?url=http://localhost:3000/post/0.6440837173314782/link"
-  //   >
-  //     Twitter
-  //   </a>
-  // </div>;
 
   return (
     <div className="postParent">

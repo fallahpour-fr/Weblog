@@ -1,10 +1,10 @@
 import React from "react";
 import "./style/Header.scss";
-import { Link, useHistory, useRouteMatch } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 
 const Header = () => {
-  let { path, url } = useRouteMatch();
+
   let history = useHistory();
   const logOut = () => {
     localStorage.removeItem("tokens");

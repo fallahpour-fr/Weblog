@@ -1,21 +1,11 @@
 import React, { useState } from "react";
-import { Comment, Avatar, Form, Button, List, Input } from "antd";
+import { Comment, Avatar, Form, Button, List } from "antd";
 import moment from "moment";
 import "../component/style/Comment.scss";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw } from "draft-js";
 import draftToMarkdown from "draftjs-to-markdown";
 
-// <Form.Item>
-// <TextArea
-//   rows={4}
-//   className="commentTexterea"
-//   onChange={handleChange}
-//   value={value}
-//   className="commentItem"
-// />
-// </Form.Item>
-// const { TextArea } = Input;
 
 const CommentHandler = () => {
   const [comments, setComments] = useState([]);
@@ -52,9 +42,6 @@ const CommentHandler = () => {
     settoolbarHidden(!toolbarHidden);
   };
 
-  // value={editorState && draftToMarkdown(convertToRaw(editorState.getCurrentContent()))}
-
-  // console.log(draftToMarkdown(convertToRaw(editorState.getCurrentContent())));
   console.log(comments);
   return (
     <div className="commentParent">

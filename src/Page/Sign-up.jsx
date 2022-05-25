@@ -67,7 +67,6 @@ const RegistrationForm = (props) => {
       })
       .then((data) => {
         history.push("/");
-        console.log("token:", data.token);
         setAuthTokens(data.token);
       })
       .catch((err) => {

@@ -1,31 +1,17 @@
 import React, { useState, useEffect, Fragment } from "react";
-import {
-  useHistory,
-  Link,
-  Switch,
-  Route,
-  NavLink,
-  BrowserRouter,
-  useRouteMatch,
-} from "react-router-dom";
 import API from "../component/API/axios";
 import ErrorModal from "../component/ErrorModal";
 import Post from "../component/Post";
-import { useAuth } from "../component/context/auth";
 import User from "../component/User";
 import "../component/style/Home.scss";
-import EdittorHandler from "../component/EdittorHandler";
 
 const Home = () => {
   const [errorModule, setErrorModal] = useState();
-  // const { postForm, setPostForm } = useAuth();
   const [postForm, setPostForm] = useState([]);
 
   const errorHandler = () => {
     setErrorModal(null);
   };
-
-  console.log(postForm);
 
   useEffect(() => {
     API.get("/users/profile")
@@ -33,18 +19,14 @@ const Home = () => {
         setPostForm(response.data.user.posts);
       })
       .catch((err) => {
-        console.log(err.response.data);
         setErrorModal({
           title: "Error",
           message: err.response.data,
         });
-        // if (err.response.error)
-        //   console.log(`Error : ${JSON.stringify(err.response.error)}`);
       });
   }, []);
 
   const removed = (id) => {
-    console.log(id);
     setPostForm(postForm.filter((item) => item.id !== id));
     API.post("/post", {
       id,

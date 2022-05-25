@@ -4,9 +4,9 @@ import { useAuth } from "./context/auth";
 import Header from "../component/Header";
 
 function PrivateRoute({ comp: Component, ...rest }) {
+  
   const { authTokens } = useAuth();
-  // console.log(authTokens);
-  // let token = localStorage.getItem("tokens");
+
   return (
     <Route
       {...rest}

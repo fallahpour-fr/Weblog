@@ -1,11 +1,8 @@
-import { Route, Switch, Link, useRouteMatch } from "react-router-dom";
-import OnePost from "./OnePost";
+import { Link } from "react-router-dom";
 import "./style/Post.scss";
 
 const Post = (props) => {
   let form = props.postForm;
-
-  let { path, url } = useRouteMatch();
 
   return (
     <div className="posts">

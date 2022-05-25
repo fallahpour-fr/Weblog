@@ -9,12 +9,10 @@ import PrivateRoute from "./component/PrivateRoute";
 import ErrorModal from "./component/ErrorModal";
 import Profile from "./component/profile/Profile/Profile";
 import Createpost from "./Page/Createpost";
-import Post from "./component/Post";
 import OnePost from "./component/OnePost";
 function App() {
   const [errorModule, setErrorModal] = useState();
   const [authTokens, setAuthTokens] = useState(localStorage.getItem("tokens"));
-  // const [postForm, setPostForm] = useState([]);
   const setTokens = (token) => {
     localStorage.setItem("tokens", token);
     console.log(token);
@@ -28,16 +26,6 @@ function App() {
   const errorHandler = () => {
     setErrorModal(null);
   };
-
-  // const sendPostHandler = (value) => {
-  //   console.log(value);
-  //   setPostForm((preValue) => {
-  //     return [...preValue, value];
-  //   });
-  // };
-  // postForm,
-  // sendPostHandler: sendPostHandler,
-  // setPostForm,
 
   return (
     <BrowserRouter>

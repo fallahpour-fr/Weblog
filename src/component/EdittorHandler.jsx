@@ -26,8 +26,6 @@ export default function EdittorHandler() {
     setEditorState(data);
   };
 
-//   console.log(JSON.stringify(editorState, null, 1));
-
   return (
     <div className='editor'>
         <Editor

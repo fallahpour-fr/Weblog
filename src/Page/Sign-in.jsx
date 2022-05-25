@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { Link, useHistory} from "react-router-dom";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { useAuth } from "../component/context/auth";
@@ -52,18 +52,12 @@ const SignIn = (props) => {
             "you did not regestere before , please go to sign up page ."
           );
         }
-        //   if (!response.data.ok) {
-        // throw new Error(
-        //   "you did not regestere before , please go to sign up page ."
-        // );
-        // }
       })
       .catch((err) => {
         setErrorModule({
           title: "Error",
           message: err.message,
         });
-        console.log(err.message);
       });
   };
 

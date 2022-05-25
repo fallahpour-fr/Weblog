@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Form, Input, InputNumber, Button } from "antd";
+import { Form, Input, Button } from "antd";
 import "../component/style/Createpost.scss";
 import { useHistory, Prompt } from "react-router-dom";
 import API from "../component/API/axios";
@@ -19,10 +19,10 @@ const Createpost = () => {
   const [enteredData, setEnteredData] = useState(false);
   const [selectedText, setSelectedText] = useState();
   const refText = useRef();
+
   const onFinish = (values) => {
     form.resetFields();
     values.id = Math.random();
-    console.log(values);
     history.push("/");
     API.post("/createpost", {
       values,
